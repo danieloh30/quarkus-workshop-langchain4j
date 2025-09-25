@@ -1011,16 +1011,15 @@ You are not viewing the latest version.
 <a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">            </span><span class="p">.</span><span class="na">agentBuilder</span><span class="p">(</span><span class="n">CarWashAgent</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">            </span><span class="p">.</span><span class="na">chatModel</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="na">baseModel</span><span class="p">())</span>
 <a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">            </span><span class="p">.</span><span class="na">tools</span><span class="p">(</span><span class="n">carWashTool</span><span class="p">)</span>
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">            </span><span class="p">.</span><span class="na">outputName</span><span class="p">(</span><span class="s">"carWashAgentResult"</span><span class="p">)</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">carWashAgent</span><span class="p">;</span>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="p">}</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">carWashAgent</span><span class="p">;</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="p">}</span>
 </code></pre></div>
 <p>The set up of the agent entails:</p>
 <ul>
 <li>defining the chat model it should use</li>
-<li>indicating the output name in the <code>AgenticScope</code> to use to hold the result from the call to the agent (more will be said about the <code>AgenticScope</code> in the next step)</li>
+<li>associating tools with the agent</li>
 </ul>
 <p>The <code>CarManagementResource</code> calls the <code>CarManagementService.processCarReturn</code> method to handle car returns. </p>
 <div class="highlight"><span class="filename">CarManagementService.java</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cm">/**</span>
@@ -1077,7 +1076,7 @@ You are not viewing the latest version.
 <a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="s">        Rental Feedback: {{rentalFeedback}}</span>
 <a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="s">        Car Wash Feedback: {{carWashFeedback}}</span>
 <a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="s">        """</span><span class="p">)</span>
-<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="nd">@Agent</span><span class="p">(</span><span class="s">"Car wash specialist. Determines what car wash services are needed."</span><span class="p">)</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="nd">@Agent</span><span class="p">(</span><span class="n">outputName</span><span class="o">=</span><span class="s">"carWashAgentResult"</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="o">=</span><span class="s">"Car wash specialist. Determines what car wash services are needed."</span><span class="p">)</span>
 <a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">processCarWash</span><span class="p">(</span>
 <a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carMake"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carMake</span><span class="p">,</span>
 <a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carModel"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carModel</span><span class="p">,</span>
