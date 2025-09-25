@@ -16,7 +16,7 @@ body[data-md-color-scheme="slate"] main img {
 
 /* Add indentation to the second-layer navigation list */
 .md-nav__item--section > .md-nav > .md-nav__list {
-    margin-left: 1rem; /* Adjust this value as needed */
+    margin-left: 1.5rem; /* Adjust this value as needed */
 }
 
 /* Optional: Add a left border to highlight the hierarchy */
