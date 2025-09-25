@@ -13,3 +13,13 @@ body[data-md-color-scheme="slate"] main img {
     padding: 1rem;
     background: rgba(226, 228, 233, 0.82);
 }
+
+/* Add indentation to the second-layer navigation list */
+.md-nav__item--section > .md-nav > .md-nav__list {
+    margin-left: 0.5rem; /* Adjust this value as needed */
+}
+
+/* Optional: Add a left border to highlight the hierarchy */
+.md-nav__item--section > .md-nav > .md-nav__list {
+    border-left: 1px solid var(--md-default-fg-color--lightest);
+}
