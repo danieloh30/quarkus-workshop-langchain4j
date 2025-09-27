@@ -744,6 +744,16 @@ You are not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#createupdate-agents-and-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create/Update agents and workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create/Update agents and workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#create-a-carconditionfeedbackagent" class="md-nav__link">
     <span class="md-ellipsis">
       Create a CarConditionFeedbackAgent
@@ -751,8 +761,8 @@ You are not viewing the latest version.
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#create-a-carprocessingworkflow-agent-interface-to-use-for-the-sequence-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Create a CarProcessingWorkflow Agent Interface to Use for the Sequence Workflow
@@ -760,8 +770,23 @@ You are not viewing the latest version.
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#define-the-agents-and-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define the agents and workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Define the agents and workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#define-the-sequence-workflow-in-carmanagementservice" class="md-nav__link">
     <span class="md-ellipsis">
       Define the Sequence Workflow in CarManagementService
@@ -769,13 +794,18 @@ You are not viewing the latest version.
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#modify-the-carmanagementservice-to-use-the-sequence-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Modify the CarManagementService to Use the Sequence Workflow
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -938,6 +968,16 @@ You are not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
+  <a href="#createupdate-agents-and-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create/Update agents and workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create/Update agents and workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#create-a-carconditionfeedbackagent" class="md-nav__link">
     <span class="md-ellipsis">
       Create a CarConditionFeedbackAgent
@@ -945,8 +985,8 @@ You are not viewing the latest version.
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#create-a-carprocessingworkflow-agent-interface-to-use-for-the-sequence-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Create a CarProcessingWorkflow Agent Interface to Use for the Sequence Workflow
@@ -954,8 +994,23 @@ You are not viewing the latest version.
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#define-the-agents-and-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Define the agents and workflows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Define the agents and workflows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#define-the-sequence-workflow-in-carmanagementservice" class="md-nav__link">
     <span class="md-ellipsis">
       Define the Sequence Workflow in CarManagementService
@@ -963,13 +1018,18 @@ You are not viewing the latest version.
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#modify-the-carmanagementservice-to-use-the-sequence-workflow" class="md-nav__link">
     <span class="md-ellipsis">
       Modify the CarManagementService to Use the Sequence Workflow
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1028,12 +1088,16 @@ You are not viewing the latest version.
 <p><img alt="App Blueprint" class="center" src="../../images/agentic-app-2.png"></p>
 <p>We’ll create a workflow that processes car returns, updates car conditions based on feedback, and manages the car washing process.</p>
 <p>Starting from our app in step-01, we need to:</p>
-<ol>
+<p>Create/Update agents and workflows:</p>
+<ul>
 <li>Create a <code>CarConditionFeedbackAgent</code></li>
 <li>Create a <code>CarProcessingWorkflow</code> agent interface to use for the sequence workflow</li>
+</ul>
+<p>Define the agents and workflows:</p>
+<ul>
 <li>Define the sequence workflow in <code>CarManagementService</code></li>
 <li>Modify the <code>CarManagementService</code> to use the sequence workflow</li>
-</ol>
+</ul>
 <h2 id="before-you-begin">Before You Begin<a class="headerlink" href="#before-you-begin" title="Permanent link"></a></h2>
 <p>You can either use the code from <code>step-01</code> and continue from there, or check the final code of the step located in the <code>step-02</code> directory.</p>
 <details class="important">
@@ -1057,8 +1121,9 @@ You are not viewing the latest version.
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">copy</span> ..\step-02\src\main\java\com\carmanagement\service\CarService.java .\src\main\java\com\carmanagement\service\CarService.java
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">copy</span> ..\step-02\src\main\java\com\carmanagement\model\CarInfo.java .\src\main\java\com\carmanagement\model\CarInfo.java
 </code></pre></div>
-<h2 id="create-a-carconditionfeedbackagent">Create a CarConditionFeedbackAgent<a class="headerlink" href="#create-a-carconditionfeedbackagent" title="Permanent link"></a></h2>
-<p>In the <code>section-2/step-02/src/main/java/com/carmanagement/agentic/agents</code> directory, create the <code>CarConditionFeedbackAgent</code>:</p>
+<h2 id="createupdate-agents-and-workflows">Create/Update agents and workflows<a class="headerlink" href="#createupdate-agents-and-workflows" title="Permanent link"></a></h2>
+<h3 id="create-a-carconditionfeedbackagent">Create a <code>CarConditionFeedbackAgent</code><a class="headerlink" href="#create-a-carconditionfeedbackagent" title="Permanent link"></a></h3>
+<p>In the <code>src/main/java/com/carmanagement/agentic/agents</code> directory, create the <code>CarConditionFeedbackAgent</code>:</p>
 <div class="highlight"><span class="filename">CarConditionFeedbackAgent.java</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.agents</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dev.langchain4j.service.SystemMessage</span><span class="p">;</span>
@@ -1100,7 +1165,7 @@ You are not viewing the latest version.
 <a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="p">}</span>
 </code></pre></div>
 <p>As we’ve seen before, the interface for an agent defines the system message, user message and indicates which method is the agent method. The car condition feedback agent will assess the car’s condition based on its previous known condition and the feedback provided.</p>
-<h2 id="create-a-carprocessingworkflow-agent-interface-to-use-for-the-sequence-workflow">Create a CarProcessingWorkflow Agent Interface to Use for the Sequence Workflow<a class="headerlink" href="#create-a-carprocessingworkflow-agent-interface-to-use-for-the-sequence-workflow" title="Permanent link"></a></h2>
+<h3 id="create-a-carprocessingworkflow-agent-interface-to-use-for-the-sequence-workflow">Create a <code>CarProcessingWorkflow</code> Agent Interface to Use for the Sequence Workflow<a class="headerlink" href="#create-a-carprocessingworkflow-agent-interface-to-use-for-the-sequence-workflow" title="Permanent link"></a></h3>
 <p>First, create the directory:</p>
 <p>For Linux/macOS:
 </p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>./src/main/java/com/carmanagement/agentic/workflow
@@ -1134,14 +1199,10 @@ You are not viewing the latest version.
 <a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carWashFeedback"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carWashFeedback</span><span class="p">);</span>
 <a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="p">}</span>
 </code></pre></div>
-<p><code>CarProcessingWorkflow</code> is a type-safe interface that we can use as our sequence workflow. Notice that the <code>CarProcessingWorkflow</code> interface looks a lot like a regular agent. Workflows can be thought of as containers for sets of agents, not agents themselves. Since workflows do not interact with LLMs, they do not have <code>@SystemMessage</code> or <code>@UserMessage</code> annotations. Notice that the <code>processCarReturn</code> method returns a result with type <code>ResultWithAgenticScope&lt;String&gt;</code> – this is a special type that causes the generated code to return not just the text response from the agent, but also the <code>AgenticScope</code> that is created and used in the workflow.</p>
-<h2 id="define-the-sequence-workflow-in-carmanagementservice">Define the Sequence Workflow in CarManagementService<a class="headerlink" href="#define-the-sequence-workflow-in-carmanagementservice" title="Permanent link"></a></h2>
-<p>Next, let’s define the sequence workflow in <code>CarManagementService</code>.</p>
-<ul>
-<li>Let’s modify the <code>initialize</code> method to initialize the <code>CarProcessingWorkflow</code> when the service is instantiated.</li>
-<li>The <code>createCarProcessingWorkflow</code> method needs to define the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> — the 2 agents we want to include in our sequence workflow.</li>
-<li>The <code>createCarProcessingWorkflow</code> method then needs to define the sequence workflow, <code>CarProcessingWorkflow</code>, including the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> as subagents (the subagent list represents the list of agents that are in the workflow).</li>
-</ul>
+<p><code>CarProcessingWorkflow</code> is a type-safe interface that we can use as our sequence workflow. Notice that the <code>CarProcessingWorkflow</code> interface looks a lot like a regular agent. Workflows can be thought of as containers for sets of agents, not agents themselves. Since workflows do not interact with LLMs, they do not have <code>@SystemMessage</code> or <code>@UserMessage</code> annotations. Notice that the <code>processCarReturn</code> method returns a result with type <code>ResultWithAgenticScope&lt;String&gt;</code> – which contains the text response from the agent as well as the <code>AgenticScope</code> that is created and used in the workflow.</p>
+<h2 id="define-the-agents-and-workflows">Define the agents and workflows<a class="headerlink" href="#define-the-agents-and-workflows" title="Permanent link"></a></h2>
+<p>We’ll need to make a few changes to our <code>CarManagementService</code> to define our new agent and workflow.</p>
+<p>Complete the steps described below, or simply copy the following code to the file in your <code>src/main/java/com/carmanagement/service</code> directory.</p>
 <div class="highlight"><span class="filename">CarManagementService.java</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.service</span><span class="p">;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.agents.CarConditionFeedbackAgent</span><span class="p">;</span>
@@ -1176,7 +1237,7 @@ You are not viewing the latest version.
 <a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="w">    </span><span class="n">CarService</span><span class="w"> </span><span class="n">carService</span><span class="p">;</span>
 <a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a>
 <a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="w">    </span><span class="nd">@Inject</span>
-<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="w">    </span><span class="n">Models</span><span class="w"> </span><span class="n">models</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="w">    </span><span class="n">Models</span><span class="w"> </span><span class="n">models</span><span class="p">;</span>
 <a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>
 <a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="w">    </span><span class="nd">@Inject</span>
 <a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="w">    </span><span class="n">CarWashTool</span><span class="w"> </span><span class="n">carWashTool</span><span class="p">;</span>
@@ -1210,70 +1271,86 @@ You are not viewing the latest version.
 </span><a id="__codelineno-6-66" name="__codelineno-6-66" href="#__codelineno-6-66"></a><span class="hll">
 </span><a id="__codelineno-6-67" name="__codelineno-6-67" href="#__codelineno-6-67"></a><span class="hll"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">carProcessingWorkflow</span><span class="p">;</span>
 </span><a id="__codelineno-6-68" name="__codelineno-6-68" href="#__codelineno-6-68"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-69" name="__codelineno-6-69" href="#__codelineno-6-69"></a>
+<a id="__codelineno-6-70" name="__codelineno-6-70" href="#__codelineno-6-70"></a><span class="w">    </span><span class="cm">/**</span>
+<a id="__codelineno-6-71" name="__codelineno-6-71" href="#__codelineno-6-71"></a><span class="cm">     * Process a car return from any operation.</span>
+<a id="__codelineno-6-72" name="__codelineno-6-72" href="#__codelineno-6-72"></a><span class="cm">     *</span>
+<a id="__codelineno-6-73" name="__codelineno-6-73" href="#__codelineno-6-73"></a><span class="cm">     * @param carNumber The car number</span>
+<a id="__codelineno-6-74" name="__codelineno-6-74" href="#__codelineno-6-74"></a><span class="cm">     * @param rentalFeedback Optional rental feedback</span>
+<a id="__codelineno-6-75" name="__codelineno-6-75" href="#__codelineno-6-75"></a><span class="cm">     * @return Result of the processing</span>
+<a id="__codelineno-6-76" name="__codelineno-6-76" href="#__codelineno-6-76"></a><span class="cm">     */</span>
+<a id="__codelineno-6-77" name="__codelineno-6-77" href="#__codelineno-6-77"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">processCarReturn</span><span class="p">(</span><span class="n">Integer</span><span class="w"> </span><span class="n">carNumber</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">rentalFeedback</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carWashFeedback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-78" name="__codelineno-6-78" href="#__codelineno-6-78"></a><span class="w">        </span><span class="n">CarInfo</span><span class="w"> </span><span class="n">carInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">carService</span><span class="p">.</span><span class="na">getCarById</span><span class="p">(</span><span class="n">carNumber</span><span class="p">);</span>
+<a id="__codelineno-6-79" name="__codelineno-6-79" href="#__codelineno-6-79"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">carInfo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-80" name="__codelineno-6-80" href="#__codelineno-6-80"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="s">"Car not found with number: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">carNumber</span><span class="p">;</span>
+<a id="__codelineno-6-81" name="__codelineno-6-81" href="#__codelineno-6-81"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-6-82" name="__codelineno-6-82" href="#__codelineno-6-82"></a>
+<a id="__codelineno-6-83" name="__codelineno-6-83" href="#__codelineno-6-83"></a><span class="hll"><span class="w">        </span><span class="c1">// Process the car return using the workflow and get the AgenticScope</span>
+</span><a id="__codelineno-6-84" name="__codelineno-6-84" href="#__codelineno-6-84"></a><span class="hll"><span class="w">        </span><span class="n">ResultWithAgenticScope</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">resultWithScope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">carProcessingWorkflow</span><span class="p">.</span><span class="na">processCarReturn</span><span class="p">(</span>
+</span><a id="__codelineno-6-85" name="__codelineno-6-85" href="#__codelineno-6-85"></a><span class="hll"><span class="w">                </span><span class="n">carInfo</span><span class="p">.</span><span class="na">getMake</span><span class="p">(),</span>
+</span><a id="__codelineno-6-86" name="__codelineno-6-86" href="#__codelineno-6-86"></a><span class="hll"><span class="w">                </span><span class="n">carInfo</span><span class="p">.</span><span class="na">getModel</span><span class="p">(),</span>
+</span><a id="__codelineno-6-87" name="__codelineno-6-87" href="#__codelineno-6-87"></a><span class="hll"><span class="w">                </span><span class="n">carInfo</span><span class="p">.</span><span class="na">getYear</span><span class="p">(),</span>
+</span><a id="__codelineno-6-88" name="__codelineno-6-88" href="#__codelineno-6-88"></a><span class="hll"><span class="w">                </span><span class="n">carNumber</span><span class="p">,</span>
+</span><a id="__codelineno-6-89" name="__codelineno-6-89" href="#__codelineno-6-89"></a><span class="hll"><span class="w">                </span><span class="n">carInfo</span><span class="p">.</span><span class="na">getCondition</span><span class="p">(),</span>
+</span><a id="__codelineno-6-90" name="__codelineno-6-90" href="#__codelineno-6-90"></a><span class="hll"><span class="w">                </span><span class="n">rentalFeedback</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">rentalFeedback</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p">,</span>
+</span><a id="__codelineno-6-91" name="__codelineno-6-91" href="#__codelineno-6-91"></a><span class="hll"><span class="w">                </span><span class="n">carWashFeedback</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">carWashFeedback</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p">);</span>
+</span><a id="__codelineno-6-92" name="__codelineno-6-92" href="#__codelineno-6-92"></a>
+<a id="__codelineno-6-93" name="__codelineno-6-93" href="#__codelineno-6-93"></a><span class="hll"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultWithScope</span><span class="p">.</span><span class="na">result</span><span class="p">();</span>
+</span><a id="__codelineno-6-94" name="__codelineno-6-94" href="#__codelineno-6-94"></a><span class="hll"><span class="w">        </span><span class="n">AgenticScope</span><span class="w"> </span><span class="n">scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultWithScope</span><span class="p">.</span><span class="na">agenticScope</span><span class="p">();</span>
+</span><a id="__codelineno-6-95" name="__codelineno-6-95" href="#__codelineno-6-95"></a><span class="hll">
+</span><a id="__codelineno-6-96" name="__codelineno-6-96" href="#__codelineno-6-96"></a><span class="hll"><span class="w">        </span><span class="c1">// Update the car's condition with the result from CarConditionFeedbackAgent</span>
+</span><a id="__codelineno-6-97" name="__codelineno-6-97" href="#__codelineno-6-97"></a><span class="hll"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">newCondition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="n">scope</span><span class="p">.</span><span class="na">readState</span><span class="p">(</span><span class="s">"carCondition"</span><span class="p">);</span>
+</span><a id="__codelineno-6-98" name="__codelineno-6-98" href="#__codelineno-6-98"></a><span class="hll"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">newCondition</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">newCondition</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-6-99" name="__codelineno-6-99" href="#__codelineno-6-99"></a><span class="hll"><span class="w">            </span><span class="n">carInfo</span><span class="p">.</span><span class="na">setCondition</span><span class="p">(</span><span class="n">newCondition</span><span class="p">);</span>
+</span><a id="__codelineno-6-100" name="__codelineno-6-100" href="#__codelineno-6-100"></a><span class="hll"><span class="w">        </span><span class="p">}</span>
+</span><a id="__codelineno-6-101" name="__codelineno-6-101" href="#__codelineno-6-101"></a>
+<a id="__codelineno-6-102" name="__codelineno-6-102" href="#__codelineno-6-102"></a><span class="hll"><span class="w">        </span><span class="c1">// If carwash was not required, make the car available to rent</span>
+</span><a id="__codelineno-6-103" name="__codelineno-6-103" href="#__codelineno-6-103"></a><span class="hll"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isRequired</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span><span class="w"> </span><span class="s">"carWashAgentResult"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><a id="__codelineno-6-104" name="__codelineno-6-104" href="#__codelineno-6-104"></a><span class="hll"><span class="w">            </span><span class="n">carInfo</span><span class="p">.</span><span class="na">setStatus</span><span class="p">(</span><span class="n">CarStatus</span><span class="p">.</span><span class="na">AVAILABLE</span><span class="p">);</span>
+</span><a id="__codelineno-6-105" name="__codelineno-6-105" href="#__codelineno-6-105"></a><span class="hll"><span class="w">        </span><span class="p">}</span>
+</span><a id="__codelineno-6-106" name="__codelineno-6-106" href="#__codelineno-6-106"></a>
+<a id="__codelineno-6-107" name="__codelineno-6-107" href="#__codelineno-6-107"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<a id="__codelineno-6-108" name="__codelineno-6-108" href="#__codelineno-6-108"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-109" name="__codelineno-6-109" href="#__codelineno-6-109"></a>
+<a id="__codelineno-6-110" name="__codelineno-6-110" href="#__codelineno-6-110"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isRequired</span><span class="p">(</span><span class="n">AgenticScope</span><span class="w"> </span><span class="n">agenticScope</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-111" name="__codelineno-6-111" href="#__codelineno-6-111"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">agenticScope</span><span class="p">.</span><span class="na">readState</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<a id="__codelineno-6-112" name="__codelineno-6-112" href="#__codelineno-6-112"></a><span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">().</span><span class="na">contains</span><span class="p">(</span><span class="s">"NOT_REQUIRED"</span><span class="p">);</span>
+<a id="__codelineno-6-113" name="__codelineno-6-113" href="#__codelineno-6-113"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">required</span><span class="p">;</span>
+<a id="__codelineno-6-114" name="__codelineno-6-114" href="#__codelineno-6-114"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-115" name="__codelineno-6-115" href="#__codelineno-6-115"></a>
+<a id="__codelineno-6-116" name="__codelineno-6-116" href="#__codelineno-6-116"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="modify-the-carmanagementservice-to-use-the-sequence-workflow">Modify the CarManagementService to Use the Sequence Workflow<a class="headerlink" href="#modify-the-carmanagementservice-to-use-the-sequence-workflow" title="Permanent link"></a></h2>
+<h3 id="define-the-sequence-workflow-in-carmanagementservice">Define the Sequence Workflow in <code>CarManagementService</code><a class="headerlink" href="#define-the-sequence-workflow-in-carmanagementservice" title="Permanent link"></a></h3>
+<p>First, we’ll define the sequence workflow in <code>CarManagementService</code>.</p>
+<ul>
+<li>Let’s modify the <code>initialize</code> method to initialize the <code>CarProcessingWorkflow</code> when the service is instantiated.</li>
+<li>The <code>createCarProcessingWorkflow</code> method needs to define the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> — the 2 agents we want to include in our sequence workflow.</li>
+<li>The <code>createCarProcessingWorkflow</code> method then needs to define the sequence workflow, <code>CarProcessingWorkflow</code>, including the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> as subagents (the subagent list represents the list of agents that are in the workflow).</li>
+</ul>
+<h3 id="modify-the-carmanagementservice-to-use-the-sequence-workflow">Modify the <code>CarManagementService</code> to Use the Sequence Workflow<a class="headerlink" href="#modify-the-carmanagementservice-to-use-the-sequence-workflow" title="Permanent link"></a></h3>
 <p>In the <code>CarManagementService</code>, let’s modify the <code>processCarReturn</code> method to call the <code>carProcessingWorkflow</code> and process its results. </p>
 <p>First, we need to invoke <code>carProcessingWorkflow.processCarReturn</code>, the agent method, to cause each of the subagents to be executed in sequence. </p>
 <p>Next, retrieve the <code>carCondition</code> value from the <code>AgenticScope</code>, and use that value as the new condition for the car.</p>
 <p>As before, check the results from the car wash agent to decide whether to change the car state.</p>
-<div class="highlight"><span class="filename">CarManagementService.java</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cm">/**</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="cm"> * Process a car return from any operation.</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="cm"> *</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="cm"> * @param carNumber The car number</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="cm"> * @param rentalFeedback Optional rental feedback</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="cm"> * @return Result of the processing</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="cm"> */</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">processCarReturn</span><span class="p">(</span><span class="n">Integer</span><span class="w"> </span><span class="n">carNumber</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">rentalFeedback</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carWashFeedback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="n">CarInfo</span><span class="w"> </span><span class="n">carInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">carService</span><span class="p">.</span><span class="na">getCarById</span><span class="p">(</span><span class="n">carNumber</span><span class="p">);</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">carInfo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">"Car not found with number: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">carNumber</span><span class="p">;</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="c1">// Process the car return using the workflow and get the AgenticScope</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="hll"><span class="w">    </span><span class="n">ResultWithAgenticScope</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">resultWithScope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">carProcessingWorkflow</span><span class="p">.</span><span class="na">processCarReturn</span><span class="p">(</span>
-</span><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="hll"><span class="w">            </span><span class="n">carInfo</span><span class="p">.</span><span class="na">getMake</span><span class="p">(),</span>
-</span><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="hll"><span class="w">            </span><span class="n">carInfo</span><span class="p">.</span><span class="na">getModel</span><span class="p">(),</span>
-</span><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="hll"><span class="w">            </span><span class="n">carInfo</span><span class="p">.</span><span class="na">getYear</span><span class="p">(),</span>
-</span><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="hll"><span class="w">            </span><span class="n">carNumber</span><span class="p">,</span>
-</span><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="hll"><span class="w">            </span><span class="n">carInfo</span><span class="p">.</span><span class="na">getCondition</span><span class="p">(),</span>
-</span><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="hll"><span class="w">            </span><span class="n">rentalFeedback</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">rentalFeedback</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p">,</span>
-</span><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="hll"><span class="w">            </span><span class="n">carWashFeedback</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">carWashFeedback</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="p">);</span>
-</span><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>
-<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultWithScope</span><span class="p">.</span><span class="na">result</span><span class="p">();</span>
-</span><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="hll"><span class="w">    </span><span class="n">AgenticScope</span><span class="w"> </span><span class="n">scope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultWithScope</span><span class="p">.</span><span class="na">agenticScope</span><span class="p">();</span>
-</span><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="hll">
-</span><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="hll"><span class="w">    </span><span class="c1">// Update the car's condition with the result from CarConditionFeedbackAgent</span>
-</span><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="hll"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">newCondition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="n">scope</span><span class="p">.</span><span class="na">readState</span><span class="p">(</span><span class="s">"carCondition"</span><span class="p">);</span>
-</span><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">newCondition</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">newCondition</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="hll"><span class="w">        </span><span class="n">carInfo</span><span class="p">.</span><span class="na">setCondition</span><span class="p">(</span><span class="n">newCondition</span><span class="p">);</span>
-</span><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="hll"><span class="w">    </span><span class="p">}</span>
-</span><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>
-<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="hll"><span class="w">    </span><span class="c1">// If carwash was not required, make the car available to rent</span>
-</span><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isRequired</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span><span class="w"> </span><span class="s">"carWashAgentResult"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-</span><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="hll"><span class="w">        </span><span class="n">carInfo</span><span class="p">.</span><span class="na">setStatus</span><span class="p">(</span><span class="n">CarStatus</span><span class="p">.</span><span class="na">AVAILABLE</span><span class="p">);</span>
-</span><a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="hll"><span class="w">    </span><span class="p">}</span>
-</span><a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>
-<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
-<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="p">}</span>
-<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a>
-<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isRequired</span><span class="p">(</span><span class="n">AgenticScope</span><span class="w"> </span><span class="n">agenticScope</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">agenticScope</span><span class="p">.</span><span class="na">readState</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">s</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">().</span><span class="na">contains</span><span class="p">(</span><span class="s">"NOT_REQUIRED"</span><span class="p">);</span>
-<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">required</span><span class="p">;</span>
-<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a><span class="p">}</span>
-</code></pre></div>
 <h2 id="try-out-the-new-workflow">Try Out the New Workflow<a class="headerlink" href="#try-out-the-new-workflow" title="Permanent link"></a></h2>
 <p>Now that we have updated the workflow to update the car condition we can try it in the UI. </p>
 <p>In your browser, access <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>.</p>
-<p>Notice that the Fleet Status section of the UI now has a “Condition” column, indicating the last known condition of the car.</p>
-<p>On the Rental Return tab choose a car and enter some feedback that would indicate something has changed about the condition of the car. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>there has clearly been a fire in the trunk of this car
+<p>Notice that the <strong>Fleet Status</strong> section of the UI now has a “Condition” column, indicating the last known condition of the car.</p>
+<p>On the <strong>Rental Return</strong> tab choose a car and enter some feedback that would indicate something has changed about the condition of the car. For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>there has clearly been a fire in the trunk of this car
 </code></pre></div>
-<p>After submitting the feedback (by hitting the Return button), and a brief pause, you should see the condition of the car gets updated in the Fleet Status section.</p>
+<p>After submitting the feedback (by hitting the <strong>Return</strong> button), and a brief pause, you should see the condition of the car gets updated in the <strong>Fleet Status</strong> section.</p>
 <p><img alt="Agentic UI" class="center" src="../../images/agentic-UI-2.png"></p>
-<p>You should also see in the log file that the car wash agent and car condition agent ran in sequence. Here you can see that the car wash agent requested an interior wash of car, and the car condition feedback agent came up with a new car condition.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>&lt;log snippet showing 2 agents running in sequence - remember to collect this while using OpenAI LLM&gt;
-</code></pre></div>
+<p>Take a moment to look at the logs from your Quarkus runtime. You should be able to identify the following sequence of events:</p>
+<ol>
+<li>an HTTP request to the car wash agent</li>
+<li>an HTTP response from the car wash agent, requesting to run the requestCarWash function</li>
+<li>the CarWashTool output, requesting interior cleaning of the car (and possibly other options)</li>
+<li>an HTTP request to the car wash agent, including the response from the car wash tool</li>
+<li>an HTTP response from the car wash agent, stating that the car wash has been requested</li>
+<li>an HTTP request to the car condition feedback agent</li>
+<li>an HTTP response from the car condition feedback agent, providing a new car condition summary</li>
+</ol>
 <h2 id="when-to-use-parallel-workflows">When to Use Parallel Workflows<a class="headerlink" href="#when-to-use-parallel-workflows" title="Permanent link"></a></h2>
 <p>In this step, we could have run the car wash agent and the car condition feedback agent in parallel since the car condition feedback agent doesn’t depend on the output from the car wash agent. We chose to do them in sequence to simplify later steps in this lab, but you can try changing the sequence workflow to a parallel workflow (which should complete faster than the sequence workflow).</p></div>
 
