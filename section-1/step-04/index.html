@@ -893,13 +893,13 @@ You are not viewing the latest version.
 It’s an important type of message.
 It provides the <em>scope</em> of the conversation and provides instructions to the LLM.</p>
 <h2 id="system-messages">System messages<a class="headerlink" href="#system-messages" title="Permanent link"></a></h2>
-<p>A <em>system message</em> in a LLM is a directive that helps guide the model’s behavior and tone during an interaction.
+<p>A <strong>system message</strong> in a LLM is a directive that helps guide the model’s behavior and tone during an interaction.
 It typically sets the context, role, or boundaries for the model, defining how it should respond to the user.</p>
 <p>System messages are crucial for shaping the model’s output, ensuring it aligns with specific requirements such as
 formality, topic focus, or specific task execution. Unlike user input, the system message remains hidden from the
 conversation but influences the overall experience.</p>
-<p>To add a system message, we need to enhance our <code>CustomerSupportAgent</code> interface.
-<mark>Update the <code>CustomerSupportAgent</code> interface content to become:</mark></p>
+<p>To add a system message, we need to enhance our <code>CustomerSupportAgent</code> interface.</p>
+<p>Update the <code>CustomerSupportAgent</code> interface content to become:</p>
 <div class="highlight"><span class="filename">CustomerSupportAgent.java</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">dev.langchain4j.quarkus.workshop</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dev.langchain4j.service.SystemMessage</span><span class="p">;</span>
