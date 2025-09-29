@@ -1036,10 +1036,10 @@ want a more complex user message extended with the user query.</p>
 It will be replaced by the user query when the AI service is called.
 As we have seen in the previous step with <code>Today is {current_date}.</code>, the prompts are templates that can be filled with
 values, here the <code>userQuery</code> parameter.</p>
-<p>The user message follows a <a href="https://www.ibm.com/topics/few-shot-learning"><em>few shot learning</em></a> format.
+<p>The user message follows a <a href="https://www.ibm.com/topics/few-shot-learning"><em>few shot learning</em></a>{target=”<em>blank”}) format.
 It provides examples of user queries and the expected output.
 This way the LLM can learn from these examples and understand the expected behavior of the AI service.
-This is a very common technique in AI to <em>train</em> models with a few examples and let them generalize.</p>
+This is a very common technique in AI to _train</em> models with a few examples and let them generalize.</p>
 <p>Also notice that the return type of the <code>isInjection</code> method is a double.
 Quarkus LangChain4j can map the return type to the expected output of the AI service.
 While not demonstrated here, it can map LLM response to complex objects using JSON deserialization.</p>
