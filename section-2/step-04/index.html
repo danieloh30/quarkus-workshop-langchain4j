@@ -1309,7 +1309,7 @@ You are not viewing the latest version.
 <h3 id="create-a-new-dispositionfeedbackagent">Create a new <code>DispositionFeedbackAgent</code><a class="headerlink" href="#create-a-new-dispositionfeedbackagent" title="Permanent link"></a></h3>
 <p>Create a <code>DispositionFeedbackAgent</code> to analyze the feedback from rental returns, car wash returns and maintenance returns. The agent will decide if we need to get rid of the car.</p>
 <p>In the system prompt, instruct the agent to include <code>DISPOSITION_NOT_REQUIRED</code> in its response if the car is in decent shape so that we can easily check for that string when we build our conditional agents.</p>
-<p>Create the file in your <code>src/main/java/com/carmanagement/agentic/agents</code> directory.</p>
+<p>Create the file in your <code>multi-agent-system/src/main/java/com/carmanagement/agentic/agents</code> directory.</p>
 <div class="highlight"><span class="filename">DispositionFeedbackAgent.java</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.agents</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dev.langchain4j.service.SystemMessage</span><span class="p">;</span>
@@ -1355,7 +1355,7 @@ You are not viewing the latest version.
 </code></pre></div>
 <h3 id="create-a-new-dispositionagent-for-the-client-side">Create a new <code>DispositionAgent</code> (for the client side)<a class="headerlink" href="#create-a-new-dispositionagent-for-the-client-side" title="Permanent link"></a></h3>
 <p>For the disposition agent, in Quarkus runtime 1 we need to create an agent to be used as a type-safe interface for us to invoke the remote A2A agent. This agent will not need to interact with LLMS, so it shouldn’t have system message or user message annotations. The parameters we define on the agent method define what will be sent to the remote agent.</p>
-<p>Create the file in your <code>src/main/java/com/carmanagement/agentic/agents</code> directory.</p>
+<p>Create the file in your <code>multi-agent-system/src/main/java/com/carmanagement/agentic/agents</code> directory.</p>
 <div class="highlight"><span class="filename">DispositionAgent.java</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.agents</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dev.langchain4j.service.V</span><span class="p">;</span>
@@ -1378,7 +1378,7 @@ You are not viewing the latest version.
 </code></pre></div>
 <h3 id="modify-the-actionworkflow-to-use-output-from-the-dispositionfeedbackagent">Modify the <code>ActionWorkflow</code> to use output from the <code>DispositionFeedbackAgent</code><a class="headerlink" href="#modify-the-actionworkflow-to-use-output-from-the-dispositionfeedbackagent" title="Permanent link"></a></h3>
 <p>We need to extend our ActionWorkflow to accept the disposition feedback agent’s output. The <code>DispositionFeedbackAgent</code> uses an <code>outputName</code> of <code>dispositionRequest</code>.</p>
-<p>Update the file in your <code>src/main/java/com/carmanagement/agentic/workflow</code> directory.</p>
+<p>Update the file in your <code>multi-agent-system/src/main/java/com/carmanagement/agentic/workflow</code> directory.</p>
 <div class="highlight"><span class="filename">ActionWorkflow.java</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nd">@Agent</span><span class="p">(</span><span class="n">outputName</span><span class="o">=</span><span class="s">"actionResult"</span><span class="p">)</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">String</span><span class="w"> </span><span class="nf">processAction</span><span class="p">(</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carMake"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carMake</span><span class="p">,</span>
@@ -1392,7 +1392,7 @@ You are not viewing the latest version.
 </span></code></pre></div>
 <h3 id="modify-the-carconditionfeedbackagent-to-use-output-from-the-dispositionfeedbackagent">Modify the <code>CarConditionFeedbackAgent</code> to use output from the <code>DispositionFeedbackAgent</code><a class="headerlink" href="#modify-the-carconditionfeedbackagent-to-use-output-from-the-dispositionfeedbackagent" title="Permanent link"></a></h3>
 <p>Similarly, we need to modify the <code>CarConditionFeedbackAgent</code> to use the output from the <code>DispositionFeedbackAgent</code>.</p>
-<p>Update the file in your <code>src/main/java/com/carmanagement/agentic/agents</code> directory.</p>
+<p>Update the file in your <code>multi-agent-system/src/main/java/com/carmanagement/agentic/agents</code> directory.</p>
 <div class="highlight"><span class="filename">CarConditionFeedbackAgent.java</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nd">@UserMessage</span><span class="p">(</span><span class="s">"""</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="s">        Car Information:</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="s">        Make: {{carMake}}</span>
@@ -1418,7 +1418,7 @@ You are not viewing the latest version.
 </code></pre></div>
 <h2 id="define-the-agents-and-workflows">Define the agents and workflows:<a class="headerlink" href="#define-the-agents-and-workflows" title="Permanent link"></a></h2>
 <p>We need to make a few changes to our <code>CarManagementService</code> to define agents and workflows:</p>
-<p>Update the file in your <code>src/main/java/com/carmanagement/service</code> directory.</p>
+<p>Update the file in your <code>multi-agent-system/src/main/java/com/carmanagement/service</code> directory.</p>
 <div class="highlight"><span class="filename">CarManagementService.java</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.service</span><span class="p">;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.agents.CarConditionFeedbackAgent</span><span class="p">;</span>
@@ -1665,7 +1665,7 @@ You are not viewing the latest version.
 <p>The setup script you ran earlier created the second Quarkus project <code>remote-a2a-agent</code>. Take a moment to look at the <code>pom.xml</code> file, in the <code>remote-a2a-agent</code> directory, to see the new dependency added for <code>langchain4j-agentic-a2a</code>.</p>
 <h3 id="create-a-new-dispositiontool">Create a new <code>DispositionTool</code><a class="headerlink" href="#create-a-new-dispositiontool" title="Permanent link"></a></h3>
 <p>Let’s create a <code>DispositionTool</code> that can be used by the <code>DispositionAgent</code> to request disposition of cars. The tool should be able to handle scrapping the car, selling it, or donating it. </p>
-<p>Create the file in your <code>src/main/java/com/demo</code> directory.</p>
+<p>Create the file in your <code>remote-a2a-agent/src/main/java/com/demo</code> directory.</p>
 <div class="highlight"><span class="filename">DispositionTool.java</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.demo</span><span class="p">;</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dev.langchain4j.agent.tool.Tool</span><span class="p">;</span>
@@ -1737,7 +1737,7 @@ You are not viewing the latest version.
 <h3 id="create-a-new-dispositionagent">Create a new <code>DispositionAgent</code><a class="headerlink" href="#create-a-new-dispositionagent" title="Permanent link"></a></h3>
 <p>Here, let’s use an AI service (introduced in <code>section-1</code>) rather than an agent, since we aren’t going to be using the <code>DispositionAgent</code> in a workflow.</p>
 <p>Create the disposition AI service, providing it a <code>ToolBox</code> that contains the <code>DispositionTool</code>. This will enable the AI Service to call the <code>DispositionTool</code> to request disposition. For ease of parameter passing, let’s use the same method signature for this <code>DispositionAgent</code> as we did for the client <code>DispositionAgent</code>.</p>
-<p>Create the file in your <code>src/main/java/com/demo</code> directory.</p>
+<p>Create the file in your <code>remote-a2a-agent/src/main/java/com/demo</code> directory.</p>
 <div class="highlight"><span class="filename">DispositionAgent.java (remote)</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.demo</span><span class="p">;</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dev.langchain4j.service.SystemMessage</span><span class="p">;</span>
@@ -1795,7 +1795,7 @@ You are not viewing the latest version.
 <li>An A2A protocol version</li>
 </ul>
 <p>This information is provided to clients that connect to the A2A server so that they know when and how to use the agent.</p>
-<p>Create the file in your <code>src/main/java/com/demo</code> directory.</p>
+<p>Create the file in your <code>remote-a2a-agent/src/main/java/com/demo</code> directory.</p>
 <div class="highlight"><span class="filename">DispositionAgentCard.java</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.demo</span><span class="p">;</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Collections</span><span class="p">;</span>
@@ -1858,7 +1858,7 @@ You are not viewing the latest version.
 <p>We put the agent’s response into an artifact in the <code>Task</code> and mark the task complete. This will result in the response being made available to the A2A client agent.</p>
 </li>
 </ul>
-<p>Create the file in your <code>src/main/java/com/demo</code> directory.</p>
+<p>Create the file in your <code>remote-a2a-agent/src/main/java/com/demo</code> directory.</p>
 <div class="highlight"><span class="filename">DispositionAgentExecutor.java</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.demo</span><span class="p">;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.enterprise.context.ApplicationScoped</span><span class="p">;</span>
@@ -1946,11 +1946,11 @@ You are not viewing the latest version.
 </code></pre></div>
 <p>After reloading the UI, you should see the <strong>Returns</strong> section is now called <strong>Returns and Dispositions</strong>. You’ll also notice that there is a new tab to list the cars that are pending disposition.</p>
 <p>On the <strong>Maintenance Return</strong> tab, select a car and try entering feedback that would suggest there is something wrong (so that it should be disposed of). For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>looks like this car hit a tree
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>this vehicle has major damage, possibly from a rollover
 </code></pre></div>
 <p><img alt="Maintenance Returns Tab" class="center" src="../../images/agentic-UI-maintenance-returns-2.png"></p>
 <p>In the logs of Quarkus runtime 2, you should be able to see that the disposition agent called its disposition tool and the tool initiated the disposition of the vehicle.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>DispositionTool result: Car disposition requested for Ford Mustang (2022), Car #11: Scrap the car
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>DispositionTool result: Car disposition requested for Ford F-150 (2021), Car #3: Scrap the car
 </code></pre></div></div>
 
 
