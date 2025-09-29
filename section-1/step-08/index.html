@@ -938,10 +938,10 @@ You are not viewing the latest version.
 
 
 <div><h1 id="step-08-agentic-ai-model-context-protocol">Step 08 - Agentic AI - Model Context Protocol<a class="headerlink" href="#step-08-agentic-ai-model-context-protocol" title="Permanent link"></a></h1>
-<p>Building on top of the Function Calling concept of the previous step, let’s explore how we can make this idea more distributed with the <a href="https://docs.quarkiverse.io/quarkus-mcp-server/dev/index.html">Model Context Protocol</a> pattern.</p>
+<p>Building on top of the Function Calling concept of the previous step, let’s explore how we can make this idea more distributed with the <a href="https://docs.quarkiverse.io/quarkus-mcp-server/dev/index.html" target="_blank">Model Context Protocol</a> pattern.</p>
 <p>Basically, we will allow the LLM to act as a true agent, calling a predefined set of tools using the Model Context Protocol to further enhance its knowledge and/or functionality. </p>
 <h2 id="model-context-protocol">Model Context Protocol<a class="headerlink" href="#model-context-protocol" title="Permanent link"></a></h2>
-<p>The <a href="https://modelcontextprotocol.io/introduction">Model Context Protocol</a> serves as an open standard, facilitating the creation of secure,
+<p>The <a href="https://modelcontextprotocol.io/introduction" target="_blank">Model Context Protocol</a> serves as an open standard, facilitating the creation of secure,
 bidirectional links between data repositories and AI-driven tools. The design is uncomplicated;
 developers can either make their data accessible via MCP servers or construct AI applications
 (MCP clients) that interface with these servers.</p>
@@ -954,7 +954,8 @@ As before, we recommend you follow the step-by-step guide to understand how it w
 <p>In your terminal, make sure you’re in the main directory of the workshop, and then execute the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w"> </span>quarkus<span class="w"> </span>create<span class="w"> </span>app<span class="w"> </span>dev.langchain4j.quarkus.workshop:quarkus-langchain4j-workshop-08-mcp-server:1.0-SNAPSHOT<span class="w"> </span>-x<span class="w"> </span>quarkus-mcp-server-sse<span class="w"> </span>-x<span class="w"> </span>quarkus-rest-client-jackson
 </code></pre></div>
-<p>You should now see a new <code>quarkus-langchain4j-workshop-08-mcp-server</code> folder. In it, create a new <code>src/main/java/dev/langchain4j/quarkus/workshop/WeatherClient.java</code> file. This will be our REST client to call the remote weather API. <mark>Populate it with the below code:</mark></p>
+<p>You should now see a new <code>quarkus-langchain4j-workshop-08-mcp-server</code> folder. In it, create a new <code>src/main/java/dev/langchain4j/quarkus/workshop/WeatherClient.java</code> file. This will be our REST client to call the remote weather API. </p>
+<p>Populate it with the below code:</p>
 <p></p><div class="highlight"><span class="filename">WeatherClient.java</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">dev.langchain4j.quarkus.workshop</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.ws.rs.GET</span><span class="p">;</span>
@@ -1000,7 +1001,7 @@ Now create an MCP server class that will contain methods annotated with @Tool, j
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="p">}</span>
 </code></pre></div>
-<p>Great! All that’s left is to add some configurations to our project. <mark>To the application.properties, add the following:</mark></p>
+<p>Great! All that’s left is to add some configurations to our project. To the application.properties, add the following:</p>
 <div class="highlight"><span class="filename">application.properties</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># run the MCP server on a different port than the client</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="na">quarkus.http.port</span><span class="o">=</span><span class="s">8081</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
@@ -1016,13 +1017,13 @@ Now create an MCP server class that will contain methods annotated with @Tool, j
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="na">quarkus.rest-client."weatherclient".uri</span><span class="o">=</span><span class="s">https://api.open-meteo.com/</span>
 </code></pre></div>
 <p>Easy right? With just a few lines of code, we were able to build a full-blown MCP server that would require much more work with any other stack or language out there! Quarkus FTW!</p>
-<p><mark>Go ahead and start the server from the <code>quarkus-langchain4j-workshop-08-mcp-server</code> folder in a separate terminal window/tab:</mark></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w"> </span>./mvnw<span class="w"> </span>quarkus:dev<span class="s2">"</span>
+<p>Go ahead and start the server from the <code>quarkus-langchain4j-workshop-08-mcp-server</code> folder in a separate terminal window/tab:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w"> </span>./mvnw<span class="w"> </span>quarkus:dev
 </code></pre></div>
 <p>Now, let’s configure our client app to use the newly built MCP server.</p>
 <h2 id="a-new-mcp-client-dependency">A new MCP client dependency<a class="headerlink" href="#a-new-mcp-client-dependency" title="Permanent link"></a></h2>
-<p>Quarkus LangChain4j supports MCP with equally minimal work. To use it, we need to install a new MCP client dependency.
-<mark>Open the <code>pom.xml</code> file in your <strong>main project</strong> (ie. NOT the one containing the MCP Server) and add the following dependency:</mark></p>
+<p>Quarkus LangChain4j supports MCP with equally minimal work. To use it, we need to install a new MCP client dependency.</p>
+<p>Open the <code>pom.xml</code> file in your <strong>main project</strong> (ie. NOT the one containing the MCP Server) and add the following dependency:</p>
 <div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;dependency&gt;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.quarkiverse.langchain4j<span class="nt">&lt;/groupId&gt;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>quarkus-langchain4j-mcp<span class="nt">&lt;/artifactId&gt;</span>
@@ -1042,7 +1043,7 @@ Now create an MCP server class that will contain methods annotated with @Tool, j
 </code></pre></div>
 <p>Notice that we have used the “weather” name. We will reference this in the AI service to use this particular MCP server. </p>
 <p>We’ll add a @McpToolBox(“weather”) annotation to our AI Service to reference the available MCP server. And we’ll add some instructions to the prompt to make the model calls retrieve the current weather for a car rental location, and provide suggestions on what special equipment the driver might need.</p>
-<p><mark>In the CustomerSupportAgent.java file, update the SystemMessage with the following:</mark></p>
+<p>In the CustomerSupportAgent.java file, update the SystemMessage with the following:</p>
 <div class="highlight"><span class="filename">CustomerSupportAgent.java</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">dev.langchain4j.quarkus.workshop</span><span class="p">;</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">io.quarkiverse.langchain4j.mcp.runtime.McpToolBox</span><span class="p">;</span>
@@ -1079,8 +1080,7 @@ Now create an MCP server class that will contain methods annotated with @Tool, j
 <a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="testing-the-function-calling">Testing the function calling<a class="headerlink" href="#testing-the-function-calling" title="Permanent link"></a></h2>
-<p>Let’s test the function calling.
-<mark>Make sure the application is running (<code>./mvnw quarkus:dev</code>).</mark></p>
+<p>Let’s test the function calling. Make sure the application is running (<code>./mvnw quarkus:dev</code>).</p>
 <p>Open your browser and go to <a href="http://localhost:8080">http://localhost:8080</a>.
 In the chatbot, let’s try the following interactions:</p>
 <div class="highlight"><span class="filename">You</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Hello, I would like to retrieve information about my booking.
