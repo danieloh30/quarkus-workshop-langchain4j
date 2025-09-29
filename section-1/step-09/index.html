@@ -941,7 +941,7 @@ You are not viewing the latest version.
 <p>In the previous step we introduced function calling, enabling the LLM to interact with the application.
 While this feature provides a powerful mechanism to extend the chatbot’s capabilities, it also introduces new risks,
 such as <a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/" target="_blank">prompt injection</a>.</p>
-<p>In this step we will explore how to mitigate prompt injection using <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/guardrails.html#_input_guardrails">input guardrails</a>, that are a set of functions executed before and after the LLM’s response to ensure the safety and reliability of
+<p>In this step we will explore how to mitigate prompt injection using <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/guardrails.html#_input_guardrails" target="_blank">input guardrails</a>, that are a set of functions executed before and after the LLM’s response to ensure the safety and reliability of
 the interaction.</p>
 <p><img alt="Guardrails" src="../../images/guardrails.png"></p>
 <h2 id="prompt-injection">Prompt injection<a class="headerlink" href="#prompt-injection" title="Permanent link"></a></h2>
@@ -965,8 +965,8 @@ executing potentially harmful functions.
 That will also highlight a few more capabilities of Quarkus LangChain4j.</p>
 <p>The final code of this step is available in the <code>step-09</code> directory.</p>
 <h2 id="an-ai-service-to-detect-prompt-injection">An AI service to detect prompt injection<a class="headerlink" href="#an-ai-service-to-detect-prompt-injection" title="Permanent link"></a></h2>
-<p>To prevent prompt injection, we will use an AI service to analyze the user’s input and detect malicious content.
-<mark>Create the <code>dev.langchain4j.quarkus.workshop.PromptInjectionDetectionService</code> class with the following content:</mark></p>
+<p>To prevent prompt injection, we will use an AI service to analyze the user’s input and detect malicious content.</p>
+<p>Create the <code>dev.langchain4j.quarkus.workshop.PromptInjectionDetectionService</code> class with the following content:</p>
 <div class="highlight"><span class="filename">PromptInjectionDetectionService.java</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">dev.langchain4j.quarkus.workshop</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dev.langchain4j.service.SystemMessage</span><span class="p">;</span>
@@ -1111,9 +1111,8 @@ following annotations:</p>
 <p>Basically, we only added the <code>@InputGuardrails(PromptInjectionGuard.class)</code> annotation to the <code>chat</code> method.</p>
 <p>When the application invokes the <code>chat</code> method, the <code>PromptInjectionGuard</code> guardrail will be executed first.
 If it fails, an exception is thrown and the offensive user message is not passed to <em>main</em> LLM.</p>
-<p>Before going further, we need to update the
-<code>dev.langchain4j.quarkus.workshop.CustomerSupportAgentWebSocket</code> class a bit.
-<mark>Edit the <code>dev.langchain4j.quarkus.workshop.CustomerSupportAgentWebSocket</code> class to become:</mark></p>
+<p>Before going further, we need to update the <code>dev.langchain4j.quarkus.workshop.CustomerSupportAgentWebSocket</code> class a bit.</p>
+<p>Edit the <code>dev.langchain4j.quarkus.workshop.CustomerSupportAgentWebSocket</code> class to become:</p>
 <div class="highlight"><span class="filename">CustomerSupportAgentWebSocket.java</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">dev.langchain4j.quarkus.workshop</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">io.quarkus.logging.Log</span><span class="p">;</span>
