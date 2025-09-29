@@ -1004,7 +1004,7 @@ You are not viewing the latest version.
 
 
 <div><h1 id="step-06-deconstructing-the-rag-pattern">Step 06 - Deconstructing the RAG pattern<a class="headerlink" href="#step-06-deconstructing-the-rag-pattern" title="Permanent link"></a></h1>
-<p>In the previous step, we implemented a RAG (Retrieval Augmented Generation) pattern in our AI service using <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/easy-rag.html" target="_blank">EasyRag</a>.
+<p>In the previous step, we implemented a RAG (Retrieval Augmented Generation) pattern in our AI service using <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/rag-easy-rag.html" target="_blank">Easy RAG</a>.
 Most of the complexity was hidden by EasyRag.</p>
 <p>In this step, we will deconstruct the RAG pattern to understand how it works under the hood.
 We will see how we can customize it and use our own knowledge base and embedding model.</p>
@@ -1012,13 +1012,13 @@ We will see how we can customize it and use our own knowledge base and embedding
 Otherwise, let’s get started!</p>
 <h2 id="a-bit-of-cleanup">A bit of cleanup<a class="headerlink" href="#a-bit-of-cleanup" title="Permanent link"></a></h2>
 <p>Let’s start with a bit of cleanup.
-<mark>First, open the <code>src/main/resources/application.properties</code> file and remove the following configuration:</mark></p>
+First, open the <code>src/main/resources/application.properties</code> file and remove the following configuration:</p>
 <div class="highlight"><span class="filename">application.properties</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">quarkus.langchain4j.easy-rag.path</span><span class="o">=</span><span class="s">src/main/resources/rag</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">quarkus.langchain4j.easy-rag.max-segment-size</span><span class="o">=</span><span class="s">100</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">quarkus.langchain4j.easy-rag.max-overlap-size</span><span class="o">=</span><span class="s">25</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="na">quarkus.langchain4j.easy-rag.max-results</span><span class="o">=</span><span class="s">3</span>
 </code></pre></div>
-<p><mark>Then, open the <code>pom.xml</code> file and remove the following dependency:</mark></p>
+<p>Then, open the <code>pom.xml</code> file and remove the following dependency:</p>
 <div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">&lt;dependency&gt;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.quarkiverse.langchain4j<span class="nt">&lt;/groupId&gt;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>quarkus-langchain4j-easy-rag<span class="nt">&lt;/artifactId&gt;</span>
@@ -1038,7 +1038,7 @@ These vectors are used to compare the text and find the most relevant segments.<
 In the previous step, we used the default embedding model provided by OpenAI.
 You can however use your own embedding model as well.</p>
 <p>In this step, we will use the <a href="https://huggingface.co/neuralmagic/bge-small-en-v1.5-quant" target="_blank">bge-small-en-q</a> embedding model.</p>
-<p><mark>Add the following dependency to your <code>pom.xml</code> file:</mark></p>
+<p>Add the following dependency to your <code>pom.xml</code> file:</p>
 <div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&lt;dependency&gt;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>dev.langchain4j<span class="nt">&lt;/groupId&gt;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>langchain4j-embeddings-bge-small-en-q<span class="nt">&lt;/artifactId&gt;</span>
@@ -1059,7 +1059,7 @@ Now we will use a persistent store to keep the embeddings between restarts.</p>
 <p>There are many options to store the embeddings, like <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/redis-store.html" target="_blank">Redis</a>, <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/infinispan-store.html" target="_blank">Infinispan</a>, specialized databases (like <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/chroma-store.html" target="_blank">Chroma</a>), etc.
 Here, we will use the <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/pgvector-store.html" target="_blank">PostgreSQL pgVector store</a>, a popular relational database. If you are not able to run Dev Services with Docker or Podman, you can use 
 <a href="#in-memory-embedding-store">an in-memory embedding store</a>.</p>
-<p><mark>Add the following dependency to your <code>pom.xml</code> file:</mark></p>
+<p>Add the following dependency to your <code>pom.xml</code> file:</p>
 <div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;dependency&gt;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.quarkiverse.langchain4j<span class="nt">&lt;/groupId&gt;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>quarkus-langchain4j-pgvector<span class="nt">&lt;/artifactId&gt;</span>
@@ -1071,14 +1071,14 @@ Here, we will use the <a href="https://docs.quarkiverse.io/quarkus-langchain4j/d
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./mvnw<span class="w"> </span>quarkus:add-extension<span class="w"> </span>-Dextension<span class="o">=</span>langchain4j-pgvector
 </code></pre></div>
 </div>
-<p>This embedding store (like many others) needs to know the size of the embeddings that will be stored in advance.
-<mark>Open the <code>src/main/resources/application.properties</code> file and add the following configuration:</mark></p>
+<p>This embedding store (like many others) needs to know the size of the embeddings that will be stored in advance.</p>
+<p>Open the <code>src/main/resources/application.properties</code> file and add the following configuration:</p>
 <div class="highlight"><span class="filename">application.properties</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="na">quarkus.langchain4j.pgvector.dimension</span><span class="o">=</span><span class="s">384</span>
 </code></pre></div>
 <p>The value is the size of the vectors generated by the <code>bge-small-en-q</code> embedding model.</p>
 <p>Now we will be able to use the <code>io.quarkiverse.langchain4j.pgvector.PgVectorEmbeddingStore</code> bean to store and retrieve the embeddings.</p>
 <h2 id="ingesting-documents-into-the-vector-store">Ingesting documents into the vector store<a class="headerlink" href="#ingesting-documents-into-the-vector-store" title="Permanent link"></a></h2>
-<p><mark>While you are editing the <code>src/main/resources/application.properties</code> file, add the following configuration:</mark></p>
+<p>While you are editing the <code>src/main/resources/application.properties</code> file, add the following configuration:</p>
 <div class="highlight"><span class="filename">application.properties</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="na">rag.location</span><span class="o">=</span><span class="s">src/main/resources/rag</span>
 </code></pre></div>
 <p>This is a custom config property that we will use to specify the location of the documents that will be ingested into the vector store.
@@ -1086,7 +1086,7 @@ It replaces the <code>quarkus.langchain4j.easy-rag.path</code> property from the
 <p>Now let’s create our <em>ingestor</em>.
 Remember that the role of the <em>ingestor</em> is to read the documents and store their embeddings in the vector store.</p>
 <p><img alt="The ingestion process" src="../../images/ingestion.png"></p>
-<p><mark>Create the <code>dev.langchain4j.quarkus.workshop.RagIngestion</code> class with the following content:</mark></p>
+<p>Create the <code>dev.langchain4j.quarkus.workshop.RagIngestion</code> class with the following content:</p>
 <div class="highlight"><span class="filename">RagIngestion.java</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">dev.langchain4j.quarkus.workshop</span><span class="p">;</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="kn">import static</span><span class="w"> </span><span class="nn">dev.langchain4j.data.document.splitter.DocumentSplitters.recursive</span><span class="p">;</span>
@@ -1195,7 +1195,7 @@ embedding store provided by LangChain4j.</p>
 The retriever is responsible for finding the most relevant segments for a given query.
 The augmentor is responsible for extending the prompt with the retrieved segments.</p>
 <p><img alt="The augmentation process" src="../../images/augmentation.png"></p>
-<p><mark>Create the <code>dev.langchain4j.quarkus.workshop.RagRetriever</code> class with the following content:</mark></p>
+<p>Create the <code>dev.langchain4j.quarkus.workshop.RagRetriever</code> class with the following content:</p>
 <div class="highlight"><span class="filename">RagRetriever.java</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">dev.langchain4j.quarkus.workshop</span><span class="p">;</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
@@ -1254,7 +1254,7 @@ It will:  </p>
 But let’s keep it simple for now.</p>
 <h2 id="testing-the-application">Testing the application<a class="headerlink" href="#testing-the-application" title="Permanent link"></a></h2>
 <p>Let’s see if everything works as expected.
-<mark>If you stopped the application, restart it with the following command:</mark></p>
+If you stopped the application, restart it with the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>./mvnw<span class="w"> </span>quarkus:dev
 </code></pre></div>
 <div class="admonition important">
@@ -1264,9 +1264,9 @@ So make sure you have one of them installed and running.</p>
 </div>
 <p>When the application starts, it will ingest the documents into the vector store.</p>
 <p>You can use the dev UI to verify the ingestion like we did in the previous step.
-This time, let’s test with the chatbot instead:
-<mark>Open your browser and go to <code>http://localhost:8080</code>.
-Ask the question to the chatbot and see if it retrieves the relevant segments and builds a cohesive answer:</mark></p>
+This time, let’s test with the chatbot instead:</p>
+<p>Open your browser and go to <code>http://localhost:8080</code>.
+Ask the question to the chatbot and see if it retrieves the relevant segments and builds a cohesive answer:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>What can you tell me about your cancellation policy?
 </code></pre></div>
 <h2 id="advanced-rag">Advanced RAG<a class="headerlink" href="#advanced-rag" title="Permanent link"></a></h2>
@@ -1293,7 +1293,7 @@ Right now, you get something like:</p>
 <a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>- &lt;segment 2&gt;
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>- &lt;segment 3&gt;
 </code></pre></div>
-<p><mark>Edit the <code>create</code> method in the <code>RagRetriever</code> class to:</mark></p>
+<p>Edit the <code>create</code> method in the <code>RagRetriever</code> class to:</p>
 <div class="highlight"><span class="filename">RagRetriever.java</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">dev.langchain4j.quarkus.workshop</span><span class="p">;</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span>
