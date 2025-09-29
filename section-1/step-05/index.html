@@ -501,9 +501,9 @@ You are not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-easyrag" class="md-nav__link">
+  <a href="#configuring-easy-rag" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuring EasyRag
+      Configuring Easy RAG
     </span>
   </a>
   
@@ -899,9 +899,9 @@ You are not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-easyrag" class="md-nav__link">
+  <a href="#configuring-easy-rag" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuring EasyRag
+      Configuring Easy RAG
     </span>
   </a>
   
@@ -975,10 +975,10 @@ But this dataset is general and does not contain specific information about your
 The RAG pattern allows you to add a <em>knowledge base</em> to the LLM.</p>
 <p>The RAG pattern is composed of two parts:</p>
 <ul>
-<li><strong>Ingestion</strong>: This is the part that stores data in the knowledge base.</li>
-<li><strong>Augmentation</strong>: This is the part that adds the retrieved information to the input of the LLM.</li>
+<li><strong>Ingestion</strong>: Documents are ingested, segmented (chunked), embedded into vectors, and stored in a vector store.</li>
+<li><strong>Retrieval</strong>: At query time, the question is embedded, relevant segments are retrieved via similarity search, and then sent to the LLM along with the query.</li>
 </ul>
-<p>We will see these two parts in the next steps, but first let’s use <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/easy-rag.html">EasyRag</a>{:target=”<em>blank”} to get started and understand the RAG pattern.
+<p>We will see these two parts in the next steps, but first let’s use <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/rag-easy-rag.html">Easy RAG</a>{target=”<em>blank”} to get started and understand the RAG pattern.
 EasyRag abstracts most of the complexity of implementing the RAG pattern.
 Basically, you drop your data in a configured directory, and _voilà</em>!</p>
 <p>If you want to see the final result of this step, you can check out the <code>step-05</code> directory.</p>
@@ -1003,8 +1003,8 @@ Add the following dependency to your <code>pom.xml</code> file:</p>
 <h2 id="adding-some-data">Adding some data<a class="headerlink" href="#adding-some-data" title="Permanent link"></a></h2>
 <p>The RAG pattern allows to extend the LLM knowledge with your own data.
 So, let’s add some data.</p>
-<p><mark>Create a directory named <code>rag</code> in the <code>src/main/resources</code> directory.
-Then, create a file named <code>miles-of-smiles-terms-of-use.txt</code> in the <code>rag</code> directory with the following content:</mark></p>
+<p>Create a directory named <code>rag</code> in the <code>src/main/resources</code> directory.
+Then, create a file named <code>miles-of-smiles-terms-of-use.txt</code> in the <code>rag</code> directory with the following content:</p>
 <p></p><div class="highlight"><span class="filename">miles-of-smiles-terms-of-use.txt</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Miles of Smiles Car Rental Services Terms of Use
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>1. Introduction
@@ -1046,10 +1046,10 @@ Then, create a file named <code>miles-of-smiles-terms-of-use.txt</code> in the <
 Alternatively, you can copy the <code>miles-of-smiles-terms-of-use.txt</code> file from the <code>step-05/src/main/resources/rag</code> directory.
 <p>Note that we are adding a single file, but you can add as many files as you want in the <code>rag</code> directory.
 Also, it’s not limited to text files, you can use PDF, Word, or any other format.
-See the <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/easy-rag.html" target="_blank">EasyRag documentation</a> for more information.</p>
-<h2 id="configuring-easyrag">Configuring EasyRag<a class="headerlink" href="#configuring-easyrag" title="Permanent link"></a></h2>
+See the <a href="https://docs.quarkiverse.io/quarkus-langchain4j/dev/rag-easy-rag.html" target="_blank">Easy RAG documentation</a> for more information.</p>
+<h2 id="configuring-easy-rag">Configuring Easy RAG<a class="headerlink" href="#configuring-easy-rag" title="Permanent link"></a></h2>
 <p>Now that we have some data, we need to configure EasyRag to ingest it.
-<mark>In the <code>src/main/resources/application.properties</code> file, add the following configuration:</mark></p>
+In the <code>src/main/resources/application.properties</code> file, add the following configuration:</p>
 <div class="highlight"><span class="filename">application.properties</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="na">quarkus.langchain4j.easy-rag.path</span><span class="o">=</span><span class="s">src/main/resources/rag</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="na">quarkus.langchain4j.easy-rag.max-segment-size</span><span class="o">=</span><span class="s">100</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="na">quarkus.langchain4j.easy-rag.max-overlap-size</span><span class="o">=</span><span class="s">25</span>
@@ -1068,7 +1068,8 @@ Make sure the application is running and open the browser at <a href="http://loc
 <h3 id="ingestion-and-embedding">Ingestion and Embedding<a class="headerlink" href="#ingestion-and-embedding" title="Permanent link"></a></h3>
 <p>When you start the application, you should see the following lines in the log :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>INFO<span class="w">  </span><span class="o">[</span>io.qua.lan.eas.run.EasyRagIngestor<span class="o">]</span><span class="w"> </span><span class="o">(</span>Quarkus<span class="w"> </span>Main<span class="w"> </span>Thread<span class="o">)</span><span class="w"> </span>Ingesting<span class="w"> </span>documents<span class="w"> </span>from<span class="w"> </span>path:<span class="w"> </span>src/main/resources/rag,<span class="w"> </span>path<span class="w"> </span><span class="nv">matcher</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>glob:**,<span class="w"> </span><span class="nv">recursive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>INFO<span class="w">  </span><span class="o">[</span>io.qua.lan.eas.run.EasyRagIngestor<span class="o">]</span><span class="w"> </span><span class="o">(</span>Quarkus<span class="w"> </span>Main<span class="w"> </span>Thread<span class="o">)</span><span class="w"> </span>Ingested<span class="w"> </span><span class="m">1</span><span class="w"> </span>files<span class="w"> </span>as<span class="w"> </span><span class="m">8</span><span class="w"> </span>documents
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>...
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>INFO<span class="w">  </span><span class="o">[</span>io.qua.lan.eas.run.EasyRagIngestor<span class="o">]</span><span class="w"> </span><span class="o">(</span>Quarkus<span class="w"> </span>Main<span class="w"> </span>Thread<span class="o">)</span><span class="w"> </span>Ingested<span class="w"> </span><span class="m">1</span><span class="w"> </span>files<span class="w"> </span>as<span class="w"> </span><span class="m">8</span><span class="w"> </span>documents
 </code></pre></div>
 <p>That data from the <code>rag</code> directory is being ingested.
 The files are read from the configured directory, split into segments, and stored in the knowledge base.
@@ -1081,13 +1082,13 @@ So, in the knowledge base, we have the text and the corresponding embeddings.
 These embeddings are computed using <em>embedding models</em>.
 Right now, we use the <a href="https://platform.openai.com/docs/guides/embeddings" target="_blank">default embedding model provided by OpenAI</a>.
 We will see in the next steps how to use your own embedding model.</p>
-<p>Let’s have a look at the content of our knowledge base.
-<mark>Open the browser to <a href="http://localhost:8080/q/dev-ui/">http://localhost:8080/q/dev-ui</a>.
+<p>Let’s have a look at the content of our knowledge base.</p>
+<p>Open the browser to <a href="http://localhost:8080/q/dev-ui/">http://localhost:8080/q/dev-ui</a>.
 This is the Quarkus Dev UI, the toolbox with everything you need to develop your Quarkus application.
-Locate the <em>LangChain4j</em> tile, and click on the <em>Embedding store</em> link:</mark></p>
+Locate the <em>LangChain4j</em> tile, and click on the <em>Embedding store</em> link:</p>
 <p><img alt="Embedding store link in the dev UI" src="../../images/langchain4j-tile.png"></p>
-<p><mark>Then, look for the <code>Search for relevant embeddings</code> section.
-Enter a query in the <code>Search text</code> field, for example, <code>Cancellation</code>, and then click on the <code>Search</code> button:</mark></p>
+<p>Then, look for the <code>Search for relevant embeddings</code> section.
+Enter a query in the <code>Search text</code> field, for example, <code>Cancellation</code>, and then click on the <code>Search</code> button:</p>
 <p><img alt="Search for relevant embeddings" src="../../images/embedding-search.png"></p>
 <p>You should see the segments <em>close</em> to the searched text.
 You can visualize the segments, but also their score, i.e., how close they are to the searched text.</p>
@@ -1096,8 +1097,8 @@ It applies a similarity search using a distance computation (like the <a href="h
 The closer the embeddings, the higher the score.</p>
 <h3 id="augmentation">Augmentation<a class="headerlink" href="#augmentation" title="Permanent link"></a></h3>
 <p>Let’s now go back to our chatbot and test the RAG pattern.
-<mark>Open the browser at <a href="http://localhost:8080">http://localhost:8080</a>.
-Ask a question related to the terms of use:</mark></p>
+Open the browser at <a href="http://localhost:8080">http://localhost:8080</a>.
+Ask a question related to the terms of use:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>What can you tell me about your cancellation policy?
 </code></pre></div>
 <p><img alt="RAG pattern in action" src="../../images/chat-easy-rag.png"></p>
