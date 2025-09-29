@@ -615,8 +615,59 @@ You are not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools-to-visualize-your-collected-observability-data-on-your-local-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools to visualize your collected observability data on your local machine
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools to visualize your collected observability data on your local machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quarkus-otel-lgtm-dev-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quarkus Otel LGTM Dev Service
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fault-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fault Tolerance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
   
 </li>
       
@@ -872,8 +923,59 @@ You are not viewing the latest version.
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools-to-visualize-your-collected-observability-data-on-your-local-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools to visualize your collected observability data on your local machine
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools to visualize your collected observability data on your local machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quarkus-otel-lgtm-dev-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quarkus Otel LGTM Dev Service
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fault-tolerance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fault Tolerance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
   
 </li>
       
@@ -917,7 +1019,7 @@ as well as any errors or exceptions that occur. As you might have noticed throug
 already been logging interactions with the model in previous steps.</p>
 <p>Go ahead and examine the application.properties file in the <code>src/main/resources</code> directory.
 You will see 2 properties (if you don’t see them, go ahead and add them):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">quarkus.langchain4j.openai.chat-model.log-requests</span><span class="o">=</span><span class="s">true</span>
+<div class="highlight"><span class="filename">application.properties</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">quarkus.langchain4j.openai.chat-model.log-requests</span><span class="o">=</span><span class="s">true</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">quarkus.langchain4j.openai.chat-model.log-responses</span><span class="o">=</span><span class="s">true</span>
 </code></pre></div>
 <p>The <code>log-requests</code> property enables logging of all requests made to the model,
@@ -1059,178 +1161,26 @@ we can create meaningful graphs, dashboards and alerts.</p>
 You can add metrics collection with micrometer by adding the <code>quarkus-micrometer</code> extension to the pom.xml.
 You then need to add a collector specific extension to format the metrics accordingly. In the below example
 we have included the <code>quarkus-micrometer-registry-otlp</code> extension for the general purpose OpenTelemetry. This extension imports the quarkus-micrometer as well, so no need to specify it implicitly. Add the following dependency to your code:</p>
-<p>```xml hl_lines=114-118” title=”pom.xml”</p>
-<?xml version="1.0" encoding="UTF-8"?>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelversion>4.0.0</modelversion></project></p>
-<div class="highlight"><pre><span></span><code>&lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
-&lt;artifactId&gt;quarkus-langchain4j-workshop-10&lt;/artifactId&gt;
-&lt;version&gt;1.0.0&lt;/version&gt;
-
-&lt;properties&gt;
-    &lt;maven.compiler.release&gt;21&lt;/maven.compiler.release&gt;
-
-    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-
-    &lt;compiler-plugin.version&gt;3.14.1&lt;/compiler-plugin.version&gt;
-
-    &lt;quarkus.platform.version&gt;3.28.1&lt;/quarkus.platform.version&gt;
-    &lt;quarkus-langchain4j.version&gt;1.2.0&lt;/quarkus-langchain4j.version&gt;
-&lt;/properties&gt;
-
-&lt;dependencyManagement&gt;
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-bom&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus.platform.version}&lt;/version&gt;
-            &lt;type&gt;pom&lt;/type&gt;
-            &lt;scope&gt;import&lt;/scope&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-langchain4j-bom&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus-langchain4j.version}&lt;/version&gt;
-            &lt;type&gt;pom&lt;/type&gt;
-            &lt;scope&gt;import&lt;/scope&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-&lt;/dependencyManagement&gt;
-
-&lt;dependencies&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-langchain4j-openai&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;langchain4j-embeddings-bge-small-en-q&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-langchain4j-pgvector&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-hibernate-orm-panache&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-jdbc-postgresql&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-rest&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-websockets-next&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- UI --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;importmap&lt;/artifactId&gt;
-        &lt;version&gt;1.0.8&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm.at.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;vaadin-webcomponents&lt;/artifactId&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;es-module-shims&lt;/artifactId&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;wc-chatbot&lt;/artifactId&gt;
-        &lt;version&gt;0.2.1&lt;/version&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Observability --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-opentelemetry&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.opentelemetry.instrumentation&lt;/groupId&gt;
-        &lt;artifactId&gt;opentelemetry-jdbc&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-observability-devservices-lgtm&lt;/artifactId&gt;
-        &lt;scope&gt;provided&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.micrometer.registry&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-micrometer-registry-otlp&lt;/artifactId&gt;
-        &lt;version&gt;3.4.1&lt;/version&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Fault Tolerance --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-smallrye-fault-tolerance&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-&lt;/dependencies&gt;
-
-&lt;build&gt;
-    &lt;plugins&gt;
-
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-            &lt;version&gt;${compiler-plugin.version}&lt;/version&gt;
-            &lt;configuration&gt;
-                &lt;compilerArgs&gt;
-                    &lt;arg&gt;-parameters&lt;/arg&gt;
-                &lt;/compilerArgs&gt;
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-
-        &lt;plugin&gt;
-            &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-maven-plugin&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus.platform.version}&lt;/version&gt;
-            &lt;extensions&gt;true&lt;/extensions&gt;
-            &lt;executions&gt;
-                &lt;execution&gt;
-                    &lt;goals&gt;
-                        &lt;goal&gt;build&lt;/goal&gt;
-                        &lt;goal&gt;generate-code&lt;/goal&gt;
-                        &lt;goal&gt;generate-code-tests&lt;/goal&gt;
-                    &lt;/goals&gt;
-                &lt;/execution&gt;
-            &lt;/executions&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
+<div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.quarkiverse.micrometer.registry<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>quarkus-micrometer-registry-otlp<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">&lt;version&gt;</span>3.4.1<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
-<p>
-<code>By default Quarkus will collect a variety of useful metrics for you by default,
+<p>By default Quarkus will collect a variety of useful metrics for you by default,
 e.g., CPU &amp; memory usage, garbage collection stats, etc. The LangChain4j extension will add useful metrics
-about the LLM interactions as well. Such as:</code>bash title=”Example of some of the LangChain4j metrics”</p>
-<h1 id="help-langchain4j_aiservices_seconds_max">HELP langchain4j_aiservices_seconds_max<a class="headerlink" href="#help-langchain4j_aiservices_seconds_max" title="Permanent link"></a></h1>
-<h1 id="type-langchain4j_aiservices_seconds_max-gauge">TYPE langchain4j_aiservices_seconds_max gauge<a class="headerlink" href="#type-langchain4j_aiservices_seconds_max-gauge" title="Permanent link"></a></h1>
-<p>langchain4j_aiservices_seconds_max{aiservice=”CustomerSupportAgent”,method=”chat”,} 0.0
-langchain4j_aiservices_seconds_max{aiservice=”PromptInjectionDetectionService”,method=”isInjection”,} 0.0</p>
-<h1 id="help-langchain4j_aiservices_seconds">HELP langchain4j_aiservices_seconds<a class="headerlink" href="#help-langchain4j_aiservices_seconds" title="Permanent link"></a></h1>
-<h1 id="type-langchain4j_aiservices_seconds-summary">TYPE langchain4j_aiservices_seconds summary<a class="headerlink" href="#type-langchain4j_aiservices_seconds-summary" title="Permanent link"></a></h1>
-<p>langchain4j_aiservices_seconds_count{aiservice=”CustomerSupportAgent”,method=”chat”,} 1.0
-langchain4j_aiservices_seconds_sum{aiservice=”CustomerSupportAgent”,method=”chat”,} 2.485171837
-langchain4j_aiservices_seconds_count{aiservice=”PromptInjectionDetectionService”,method=”isInjection”,} 1.0
-langchain4j_aiservices_seconds_sum{aiservice=”PromptInjectionDetectionService”,method=”isInjection”,} 0.775163834
-```</p>
+about the LLM interactions as well. Such as:</p>
+<div class="highlight"><span class="filename">Example of some of the LangChain4j metrics</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># HELP langchain4j_aiservices_seconds_max </span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># TYPE langchain4j_aiservices_seconds_max gauge</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>langchain4j_aiservices_seconds_max<span class="o">{</span><span class="nv">aiservice</span><span class="o">=</span><span class="s2">"CustomerSupportAgent"</span>,method<span class="o">=</span><span class="s2">"chat"</span>,<span class="o">}</span><span class="w"> </span><span class="m">0</span>.0
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>langchain4j_aiservices_seconds_max<span class="o">{</span><span class="nv">aiservice</span><span class="o">=</span><span class="s2">"PromptInjectionDetectionService"</span>,method<span class="o">=</span><span class="s2">"isInjection"</span>,<span class="o">}</span><span class="w"> </span><span class="m">0</span>.0
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># HELP langchain4j_aiservices_seconds </span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># TYPE langchain4j_aiservices_seconds summary</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>langchain4j_aiservices_seconds_count<span class="o">{</span><span class="nv">aiservice</span><span class="o">=</span><span class="s2">"CustomerSupportAgent"</span>,method<span class="o">=</span><span class="s2">"chat"</span>,<span class="o">}</span><span class="w"> </span><span class="m">1</span>.0
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>langchain4j_aiservices_seconds_sum<span class="o">{</span><span class="nv">aiservice</span><span class="o">=</span><span class="s2">"CustomerSupportAgent"</span>,method<span class="o">=</span><span class="s2">"chat"</span>,<span class="o">}</span><span class="w"> </span><span class="m">2</span>.485171837
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>langchain4j_aiservices_seconds_count<span class="o">{</span><span class="nv">aiservice</span><span class="o">=</span><span class="s2">"PromptInjectionDetectionService"</span>,method<span class="o">=</span><span class="s2">"isInjection"</span>,<span class="o">}</span><span class="w"> </span><span class="m">1</span>.0
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>langchain4j_aiservices_seconds_sum<span class="o">{</span><span class="nv">aiservice</span><span class="o">=</span><span class="s2">"PromptInjectionDetectionService"</span>,method<span class="o">=</span><span class="s2">"isInjection"</span>,<span class="o">}</span><span class="w"> </span><span class="m">0</span>.775163834
+</code></pre></div>
 <p>You can also customize the metrics collection by adding
 your own custom metrics. You can find more information about how to use Quarkus Micrometer in the
 <a href="https://quarkus.io/guides/micrometer" target="_blank">Quarkus Micrometer documentation</a>).</p>
@@ -1249,190 +1199,24 @@ such as Jaeger, Zipkin, or Tempo, which can then be used for monitoring and debu
 <p>To add OpenTelemetry (and by extension tracing) to your application, you will need to add the opentelemetry
 extensions to your pom.xml file. You can optionally also add the opentelemetry-jdbc dependency to collect
  trace data from JDBC queries.</p>
-<p>```xml hl_lines=101-108” title=”pom.xml”</p>
-<?xml version="1.0" encoding="UTF-8"?>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelversion>4.0.0</modelversion></project></p>
-<div class="highlight"><pre><span></span><code>&lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
-&lt;artifactId&gt;quarkus-langchain4j-workshop-10&lt;/artifactId&gt;
-&lt;version&gt;1.0.0&lt;/version&gt;
-
-&lt;properties&gt;
-    &lt;maven.compiler.release&gt;21&lt;/maven.compiler.release&gt;
-
-    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-
-    &lt;compiler-plugin.version&gt;3.14.1&lt;/compiler-plugin.version&gt;
-
-    &lt;quarkus.platform.version&gt;3.28.1&lt;/quarkus.platform.version&gt;
-    &lt;quarkus-langchain4j.version&gt;1.2.0&lt;/quarkus-langchain4j.version&gt;
-&lt;/properties&gt;
-
-&lt;dependencyManagement&gt;
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-bom&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus.platform.version}&lt;/version&gt;
-            &lt;type&gt;pom&lt;/type&gt;
-            &lt;scope&gt;import&lt;/scope&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-langchain4j-bom&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus-langchain4j.version}&lt;/version&gt;
-            &lt;type&gt;pom&lt;/type&gt;
-            &lt;scope&gt;import&lt;/scope&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-&lt;/dependencyManagement&gt;
-
-&lt;dependencies&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-langchain4j-openai&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;langchain4j-embeddings-bge-small-en-q&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-langchain4j-pgvector&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-hibernate-orm-panache&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-jdbc-postgresql&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-rest&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-websockets-next&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- UI --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;importmap&lt;/artifactId&gt;
-        &lt;version&gt;1.0.8&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm.at.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;vaadin-webcomponents&lt;/artifactId&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;es-module-shims&lt;/artifactId&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;wc-chatbot&lt;/artifactId&gt;
-        &lt;version&gt;0.2.1&lt;/version&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Observability --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-opentelemetry&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.opentelemetry.instrumentation&lt;/groupId&gt;
-        &lt;artifactId&gt;opentelemetry-jdbc&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-observability-devservices-lgtm&lt;/artifactId&gt;
-        &lt;scope&gt;provided&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.micrometer.registry&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-micrometer-registry-otlp&lt;/artifactId&gt;
-        &lt;version&gt;3.4.1&lt;/version&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Fault Tolerance --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-smallrye-fault-tolerance&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-&lt;/dependencies&gt;
-
-&lt;build&gt;
-    &lt;plugins&gt;
-
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-            &lt;version&gt;${compiler-plugin.version}&lt;/version&gt;
-            &lt;configuration&gt;
-                &lt;compilerArgs&gt;
-                    &lt;arg&gt;-parameters&lt;/arg&gt;
-                &lt;/compilerArgs&gt;
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-
-        &lt;plugin&gt;
-            &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-maven-plugin&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus.platform.version}&lt;/version&gt;
-            &lt;extensions&gt;true&lt;/extensions&gt;
-            &lt;executions&gt;
-                &lt;execution&gt;
-                    &lt;goals&gt;
-                        &lt;goal&gt;build&lt;/goal&gt;
-                        &lt;goal&gt;generate-code&lt;/goal&gt;
-                        &lt;goal&gt;generate-code-tests&lt;/goal&gt;
-                    &lt;/goals&gt;
-                &lt;/execution&gt;
-            &lt;/executions&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
+<div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.quarkus<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>quarkus-opentelemetry<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nt">&lt;/dependency&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.opentelemetry.instrumentation<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>opentelemetry-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
-<p>
-<code>By adding these extensions to your applications, Quarkus does a lot of heavy lifting for you in terms of setting up
+<p>By adding these extensions to your applications, Quarkus does a lot of heavy lifting for you in terms of setting up
 and configuring the OpenTelemetry API, including sending traces to a tracing service. Quarkus LangChain4j automatically
-integrates with the OpenTelemetry extension to collect traces regarding your interactions with LLMs as well.
-
-You can configure the opentelemetry tracing functionality by e.g. setting
-the endpoint and headers for your tracing service, as well as the format of the traces:</code>properties hl_lines=17-29” title=”application.properties”
-quarkus.langchain4j.openai.api-key=${OPENAI_API_KEY}
-quarkus.langchain4j.openai.chat-model.model-name=gpt-4o-mini
-quarkus.langchain4j.openai.chat-model.log-requests=true
-quarkus.langchain4j.openai.chat-model.log-responses=true
-quarkus.langchain4j.openai.chat-model.temperature=1.0
-quarkus.langchain4j.openai.chat-model.max-completion-tokens=1000
-quarkus.langchain4j.openai.chat-model.frequency-penalty=0
-quarkus.langchain4j.pgvector.dimension=384
-rag.location=src/main/resources/rag
-quarkus.langchain4j.embedding-model.provider=dev.langchain4j.model.embedding.onnx.bgesmallenq.BgeSmallEnQuantizedEmbeddingModel
-</p>
-<h1 id="observability_1">Observability<a class="headerlink" href="#observability_1" title="Permanent link"></a></h1>
-<p>quarkus.otel.logs.enabled=true
-quarkus.otel.traces.enabled=true
-%test.quarkus.observability.enabled=false
-
-quarkus.otel.exporter.otlp.traces.headers=authorization=Bearer my_secret 
-quarkus.log.console.format=%d{HH<img alt="🇲🇲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f1f2-1f1f2.svg" title=":mm:">ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n<br>
-quarkus.datasource.jdbc.telemetry=true
-```</p>
+integrates with the OpenTelemetry extension to collect traces regarding your interactions with LLMs as well.</p>
+<p>You can configure the opentelemetry tracing functionality by e.g. setting
+the endpoint and headers for your tracing service, as well as the format of the traces:</p>
+<div class="highlight"><span class="filename">application.properties</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="na">quarkus.otel.exporter.otlp.traces.headers</span><span class="o">=</span><span class="s">authorization=Bearer my_secret </span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="na">quarkus.log.console.format</span><span class="o">=</span><span class="s">%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n  </span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="na">quarkus.datasource.jdbc.telemetry</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
 <p>You might notice in the above example that the traces endpoint is commented out.
 If you have a tracing service running, you can set the endpoint accordingly.
 In a production environment you will likely override this value with an environment variable or ConfigMap or something similar.
@@ -1446,185 +1230,22 @@ It is based on the open source LGTM stack, which stands for Loki (log aggregatio
 and Prometheus (metrics aggregation). By adding the <code>quarkus-observability-devservices-gtm</code> extension, this set of tools will
 automatically (or may we say ‘automagically’?) start up in their respective containers and wire up to your application’s observability endpoints.</p>
 <p>Add the following dependencies in your <code>pom.xml</code>:</p>
-<p>```xml hl_lines=109-113” title=”pom.xml”</p>
-<?xml version="1.0" encoding="UTF-8"?>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelversion>4.0.0</modelversion></project></p>
-<div class="highlight"><pre><span></span><code>&lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
-&lt;artifactId&gt;quarkus-langchain4j-workshop-10&lt;/artifactId&gt;
-&lt;version&gt;1.0.0&lt;/version&gt;
-
-&lt;properties&gt;
-    &lt;maven.compiler.release&gt;21&lt;/maven.compiler.release&gt;
-
-    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-
-    &lt;compiler-plugin.version&gt;3.14.1&lt;/compiler-plugin.version&gt;
-
-    &lt;quarkus.platform.version&gt;3.28.1&lt;/quarkus.platform.version&gt;
-    &lt;quarkus-langchain4j.version&gt;1.2.0&lt;/quarkus-langchain4j.version&gt;
-&lt;/properties&gt;
-
-&lt;dependencyManagement&gt;
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-bom&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus.platform.version}&lt;/version&gt;
-            &lt;type&gt;pom&lt;/type&gt;
-            &lt;scope&gt;import&lt;/scope&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-langchain4j-bom&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus-langchain4j.version}&lt;/version&gt;
-            &lt;type&gt;pom&lt;/type&gt;
-            &lt;scope&gt;import&lt;/scope&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-&lt;/dependencyManagement&gt;
-
-&lt;dependencies&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-langchain4j-openai&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;langchain4j-embeddings-bge-small-en-q&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-langchain4j-pgvector&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-hibernate-orm-panache&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-jdbc-postgresql&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-rest&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-websockets-next&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- UI --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;importmap&lt;/artifactId&gt;
-        &lt;version&gt;1.0.8&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm.at.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;vaadin-webcomponents&lt;/artifactId&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;es-module-shims&lt;/artifactId&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;wc-chatbot&lt;/artifactId&gt;
-        &lt;version&gt;0.2.1&lt;/version&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Observability --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-opentelemetry&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.opentelemetry.instrumentation&lt;/groupId&gt;
-        &lt;artifactId&gt;opentelemetry-jdbc&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-observability-devservices-lgtm&lt;/artifactId&gt;
-        &lt;scope&gt;provided&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.micrometer.registry&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-micrometer-registry-otlp&lt;/artifactId&gt;
-        &lt;version&gt;3.4.1&lt;/version&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Fault Tolerance --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-smallrye-fault-tolerance&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-&lt;/dependencies&gt;
-
-&lt;build&gt;
-    &lt;plugins&gt;
-
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-            &lt;version&gt;${compiler-plugin.version}&lt;/version&gt;
-            &lt;configuration&gt;
-                &lt;compilerArgs&gt;
-                    &lt;arg&gt;-parameters&lt;/arg&gt;
-                &lt;/compilerArgs&gt;
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-
-        &lt;plugin&gt;
-            &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-maven-plugin&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus.platform.version}&lt;/version&gt;
-            &lt;extensions&gt;true&lt;/extensions&gt;
-            &lt;executions&gt;
-                &lt;execution&gt;
-                    &lt;goals&gt;
-                        &lt;goal&gt;build&lt;/goal&gt;
-                        &lt;goal&gt;generate-code&lt;/goal&gt;
-                        &lt;goal&gt;generate-code-tests&lt;/goal&gt;
-                    &lt;/goals&gt;
-                &lt;/execution&gt;
-            &lt;/executions&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
+<div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.quarkus<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>quarkus-observability-devservices-lgtm<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
-<p>
-<code>In the application.properties, let's enable the OpenTelemetry tracing and log collection features:</code>properties hl_lines=13-15” title=”application.properties”
-quarkus.langchain4j.openai.api-key=${OPENAI_API_KEY}
-quarkus.langchain4j.openai.chat-model.model-name=gpt-4o-mini
-quarkus.langchain4j.openai.chat-model.log-requests=true
-quarkus.langchain4j.openai.chat-model.log-responses=true
-quarkus.langchain4j.openai.chat-model.temperature=1.0
-quarkus.langchain4j.openai.chat-model.max-completion-tokens=1000
-quarkus.langchain4j.openai.chat-model.frequency-penalty=0
-quarkus.langchain4j.pgvector.dimension=384
-rag.location=src/main/resources/rag
-quarkus.langchain4j.embedding-model.provider=dev.langchain4j.model.embedding.onnx.bgesmallenq.BgeSmallEnQuantizedEmbeddingModel
-</p>
-<h1 id="observability_2">Observability<a class="headerlink" href="#observability_2" title="Permanent link"></a></h1>
-<p>quarkus.otel.logs.enabled=true
-quarkus.otel.traces.enabled=true
-%test.quarkus.observability.enabled=false
-
-quarkus.otel.exporter.otlp.traces.headers=authorization=Bearer my_secret 
-quarkus.log.console.format=%d{HH<img alt="🇲🇲" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f1f2-1f1f2.svg" title=":mm:">ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n<br>
-quarkus.datasource.jdbc.telemetry=true
-```</p>
+<p>In the application.properties, let’s enable the OpenTelemetry tracing and log collection features:</p>
+<div class="highlight"><span class="filename">application.properties</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">#Observability</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="na">quarkus.otel.logs.enabled</span><span class="o">=</span><span class="s">true</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="na">quarkus.otel.traces.enabled</span><span class="o">=</span><span class="s">true</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="na">%test.quarkus.observability.enabled</span><span class="o">=</span><span class="s">false</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="na">quarkus.otel.exporter.otlp.traces.headers</span><span class="o">=</span><span class="s">authorization=Bearer my_secret </span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="na">quarkus.log.console.format</span><span class="o">=</span><span class="s">%d{HH:mm:ss} %-5p traceId=%X{traceId}, parentId=%X{parentId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n  </span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="na">quarkus.datasource.jdbc.telemetry</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
 <p>Now refresh the chatbot application in your browser and interact with the bot again to generate some new observability data.
 Note that it could take a bit longer for the application to start up, since Quarkus is starting up the LGTM Dev Services containers
 in the background.</p>
@@ -1675,221 +1296,69 @@ should something go wrong, we are able to handle it gracefully.</p>
 <p>Ultimately, calling an LLM is not much different than making traditional REST calls.
 If you’re familiar with <a href="https://microprofile.io" target="_blank">MicroProfile</a>, you may know that it has a specification for how to implement Fault Tolerance. Quarkus implements this feature with the <code>quarkus-smallrye-fault-tolerance</code>
 extension. Go ahead and add it to the your pom.xml:</p>
-<p>```xml hl_lines=120-124” title=”pom.xml”</p>
-<?xml version="1.0" encoding="UTF-8"?>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelversion>4.0.0</modelversion></project></p>
-<div class="highlight"><pre><span></span><code>&lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
-&lt;artifactId&gt;quarkus-langchain4j-workshop-10&lt;/artifactId&gt;
-&lt;version&gt;1.0.0&lt;/version&gt;
-
-&lt;properties&gt;
-    &lt;maven.compiler.release&gt;21&lt;/maven.compiler.release&gt;
-
-    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
-    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
-
-    &lt;compiler-plugin.version&gt;3.14.1&lt;/compiler-plugin.version&gt;
-
-    &lt;quarkus.platform.version&gt;3.28.1&lt;/quarkus.platform.version&gt;
-    &lt;quarkus-langchain4j.version&gt;1.2.0&lt;/quarkus-langchain4j.version&gt;
-&lt;/properties&gt;
-
-&lt;dependencyManagement&gt;
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-bom&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus.platform.version}&lt;/version&gt;
-            &lt;type&gt;pom&lt;/type&gt;
-            &lt;scope&gt;import&lt;/scope&gt;
-        &lt;/dependency&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-langchain4j-bom&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus-langchain4j.version}&lt;/version&gt;
-            &lt;type&gt;pom&lt;/type&gt;
-            &lt;scope&gt;import&lt;/scope&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-&lt;/dependencyManagement&gt;
-
-&lt;dependencies&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-langchain4j-openai&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;dev.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;langchain4j-embeddings-bge-small-en-q&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.langchain4j&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-langchain4j-pgvector&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-hibernate-orm-panache&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-jdbc-postgresql&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-rest&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-websockets-next&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- UI --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;importmap&lt;/artifactId&gt;
-        &lt;version&gt;1.0.8&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm.at.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;vaadin-webcomponents&lt;/artifactId&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;es-module-shims&lt;/artifactId&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.mvnpm&lt;/groupId&gt;
-        &lt;artifactId&gt;wc-chatbot&lt;/artifactId&gt;
-        &lt;version&gt;0.2.1&lt;/version&gt;
-        &lt;scope&gt;runtime&lt;/scope&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Observability --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-opentelemetry&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.opentelemetry.instrumentation&lt;/groupId&gt;
-        &lt;artifactId&gt;opentelemetry-jdbc&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-observability-devservices-lgtm&lt;/artifactId&gt;
-        &lt;scope&gt;provided&lt;/scope&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkiverse.micrometer.registry&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-micrometer-registry-otlp&lt;/artifactId&gt;
-        &lt;version&gt;3.4.1&lt;/version&gt;
-    &lt;/dependency&gt;
-
-    &lt;!-- Fault Tolerance --&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
-        &lt;artifactId&gt;quarkus-smallrye-fault-tolerance&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-&lt;/dependencies&gt;
-
-&lt;build&gt;
-    &lt;plugins&gt;
-
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-            &lt;version&gt;${compiler-plugin.version}&lt;/version&gt;
-            &lt;configuration&gt;
-                &lt;compilerArgs&gt;
-                    &lt;arg&gt;-parameters&lt;/arg&gt;
-                &lt;/compilerArgs&gt;
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-
-        &lt;plugin&gt;
-            &lt;groupId&gt;io.quarkus.platform&lt;/groupId&gt;
-            &lt;artifactId&gt;quarkus-maven-plugin&lt;/artifactId&gt;
-            &lt;version&gt;${quarkus.platform.version}&lt;/version&gt;
-            &lt;extensions&gt;true&lt;/extensions&gt;
-            &lt;executions&gt;
-                &lt;execution&gt;
-                    &lt;goals&gt;
-                        &lt;goal&gt;build&lt;/goal&gt;
-                        &lt;goal&gt;generate-code&lt;/goal&gt;
-                        &lt;goal&gt;generate-code-tests&lt;/goal&gt;
-                    &lt;/goals&gt;
-                &lt;/execution&gt;
-            &lt;/executions&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
+<div class="highlight"><span class="filename">pom.xml</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cm">&lt;!-- Fault Tolerance --&gt;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>io.quarkus<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>quarkus-smallrye-fault-tolerance<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
-<p>
-<code>The Microprofile Fault Tolerance spec defines 3 main fault tolerance capabilities:
-
-* Timeout - allows you to set a maximum time the call to the LLM should take before failing.
-* Fallback - allows you to call a fallback method in case there's an error
-* Retry - allows you to set how many times the call should be retried if there's an error, 
-and what delay there should be in between the calls
-
-Now all we have to do is annotate our `dev.langchain4j.quarkus.workshop.CustomerSupportAgent` AI service with the
-following annotations:</code>java hl_lines=”6 8-9 29-31” title=”CustomerSupportAgent.java”
-package dev.langchain4j.quarkus.workshop;
-
-import jakarta.enterprise.context.SessionScoped;
-
-import org.eclipse.microprofile.faulttolerance.ExecutionContext;
-import org.eclipse.microprofile.faulttolerance.Fallback;
-import org.eclipse.microprofile.faulttolerance.FallbackHandler;
-import org.eclipse.microprofile.faulttolerance.Retry;
-import org.eclipse.microprofile.faulttolerance.Timeout;
-
-import dev.langchain4j.service.SystemMessage;
-import io.quarkiverse.langchain4j.RegisterAiService;
-import io.quarkiverse.langchain4j.ToolBox;
-import dev.langchain4j.service.guardrail.InputGuardrails;
-
-@SessionScoped
-@RegisterAiService
-public interface CustomerSupportAgent {
-
-    @SystemMessage(“””
-            You are a customer support agent of a car rental company ‘Miles of Smiles’.
-            You are friendly, polite and concise.
-            If the question is unrelated to car rental, you should politely redirect the customer to the right department.
-
-            Today is {current_date}.
-            “”“)
-    @InputGuardrails(PromptInjectionGuard.class)
-    @ToolBox(BookingRepository.class)
-    @Timeout(5000)
-    @Retry(maxRetries = 3, delay = 100)
-    @Fallback(CustomerSupportAgentFallback.class)
-    String chat(String userMessage);
-
-    public static class CustomerSupportAgentFallback implements FallbackHandler<string> {
-
-        private static final String EMPTY_RESPONSE = “Failed to get a response from the AI Model. Are you sure it’s up and running, and configured correctly?”;
-        @Override
-        public String handle(ExecutionContext context) {
-            return EMPTY_RESPONSE;
-        }
-
-    }
-}
-```</string></p>
+<p>The Microprofile Fault Tolerance spec defines 3 main fault tolerance capabilities:</p>
+<ul>
+<li>Timeout - allows you to set a maximum time the call to the LLM should take before failing.</li>
+<li>Fallback - allows you to call a fallback method in case there’s an error</li>
+<li>Retry - allows you to set how many times the call should be retried if there’s an error, 
+and what delay there should be in between the calls</li>
+</ul>
+<p>Now all we have to do is annotate our <code>dev.langchain4j.quarkus.workshop.CustomerSupportAgent</code> AI service with the
+following annotations:</p>
+<div class="highlight"><span class="filename">CustomerSupportAgent.java</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">dev.langchain4j.quarkus.workshop</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">jakarta.enterprise.context.SessionScoped</span><span class="p">;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.eclipse.microprofile.faulttolerance.ExecutionContext</span><span class="p">;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">org.eclipse.microprofile.faulttolerance.Fallback</span><span class="p">;</span>
+</span><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.eclipse.microprofile.faulttolerance.FallbackHandler</span><span class="p">;</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">org.eclipse.microprofile.faulttolerance.Retry</span><span class="p">;</span>
+</span><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="hll"><span class="kn">import</span><span class="w"> </span><span class="nn">org.eclipse.microprofile.faulttolerance.Timeout</span><span class="p">;</span>
+</span><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dev.langchain4j.service.SystemMessage</span><span class="p">;</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="kn">import</span><span class="w"> </span><span class="nn">io.quarkiverse.langchain4j.RegisterAiService</span><span class="p">;</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="kn">import</span><span class="w"> </span><span class="nn">io.quarkiverse.langchain4j.ToolBox</span><span class="p">;</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dev.langchain4j.service.guardrail.InputGuardrails</span><span class="p">;</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="nd">@SessionScoped</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="nd">@RegisterAiService</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">CustomerSupportAgent</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span><span class="nd">@SystemMessage</span><span class="p">(</span><span class="s">"""</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="s">            You are a customer support agent of a car rental company 'Miles of Smiles'.</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="s">            You are friendly, polite and concise.</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="s">            If the question is unrelated to car rental, you should politely redirect the customer to the right department.</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="s">            Today is {current_date}.</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="s">            """</span><span class="p">)</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">    </span><span class="nd">@InputGuardrails</span><span class="p">(</span><span class="n">PromptInjectionGuard</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">    </span><span class="nd">@ToolBox</span><span class="p">(</span><span class="n">BookingRepository</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="hll"><span class="w">    </span><span class="nd">@Timeout</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+</span><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="hll"><span class="w">    </span><span class="nd">@Retry</span><span class="p">(</span><span class="n">maxRetries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">delay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+</span><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="hll"><span class="w">    </span><span class="nd">@Fallback</span><span class="p">(</span><span class="n">CustomerSupportAgentFallback</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</span><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">chat</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userMessage</span><span class="p">);</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CustomerSupportAgentFallback</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">FallbackHandler</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">EMPTY_RESPONSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Failed to get a response from the AI Model. Are you sure it's up and running, and configured correctly?"</span><span class="p">;</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">        </span><span class="nd">@Override</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">handle</span><span class="p">(</span><span class="n">ExecutionContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">EMPTY_RESPONSE</span><span class="p">;</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="p">}</span>
+</code></pre></div>
 <p>That’s all. To test the implemented fault tolerance, we’ll need to <code>break</code> our application.
 You can either turn off your wifi, set the @Timeout value to something very low (e.g. 10), or
 you could set the inference server url to something that won’t resolve, eg:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">quarkus.langchain4j.openai.base-url</span><span class="o">=</span><span class="s">https://api.example.com/v1/</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="na">quarkus.langchain4j.openai.base-url</span><span class="o">=</span><span class="s">https://api.example.com/v1/</span>
 </code></pre></div>
 <p>It’s up to you to decide what your preferred way to create chaos is :).  Once you’ve done that, run your application and test it with different inputs. You should see that the fallback method is called when the LLM fails to produce a response within the specified timeout. This demonstrates the fault tolerance of our application.</p>
 <p><img alt="Fallback is being called when an error occurs" src="../../images/fallback.png"></p>
