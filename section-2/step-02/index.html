@@ -744,13 +744,13 @@ You are not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#createupdate-agents-and-workflows" class="md-nav__link">
+  <a href="#createupdate-agent-and-workflow-declarations" class="md-nav__link">
     <span class="md-ellipsis">
-      Create/Update agents and workflows
+      Create/Update agent and workflow declarations
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create/Update agents and workflows">
+    <nav class="md-nav" aria-label="Create/Update agent and workflow declarations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -968,13 +968,13 @@ You are not viewing the latest version.
 </li>
       
         <li class="md-nav__item">
-  <a href="#createupdate-agents-and-workflows" class="md-nav__link">
+  <a href="#createupdate-agent-and-workflow-declarations" class="md-nav__link">
     <span class="md-ellipsis">
-      Create/Update agents and workflows
+      Create/Update agent and workflow declarations
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create/Update agents and workflows">
+    <nav class="md-nav" aria-label="Create/Update agent and workflow declarations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1088,7 +1088,7 @@ You are not viewing the latest version.
 <p><img alt="App Blueprint" class="center" src="../../images/agentic-app-2.png"></p>
 <p>We’ll create a workflow that processes car returns, updates car conditions based on feedback, and manages the car washing process.</p>
 <p>Starting from our app in step-01, we need to:</p>
-<p>Create/Update agents and workflows:</p>
+<p>Create/Update agent and workflow declarations:</p>
 <ul>
 <li>Create a <code>CarConditionFeedbackAgent</code></li>
 <li>Create a <code>CarProcessingWorkflow</code> agent interface to use for the sequence workflow</li>
@@ -1104,7 +1104,7 @@ You are not viewing the latest version.
 <summary>Do not forget to close the application</summary>
 <p>If you have the application running from the previous step and decide to use the <code>step-02</code> directory, make sure to stop it (CTRL+C) before continuing.</p>
 </details>
-<p>If you are continuing to build the app in the <code>step-01</code> directory, start by copying some files (which don’t relate to the experience of building agentic AI apps) from <code>step-02</code>:</p>
+<p>If you are continuing to build the app in the <code>step-01</code> directory, start by copying some files (which don’t relate to the experience of building agentic AI apps) from <code>step-02</code>. Run the following commands from your <code>section-2</code> directory:</p>
 <p>For Linux/macOS:
 </p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>./step-01
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cp<span class="w"> </span>../step-02/src/main/resources/static/css/styles.css<span class="w"> </span>./src/main/resources/static/css/styles.css
@@ -1121,7 +1121,7 @@ You are not viewing the latest version.
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">copy</span> ..\step-02\src\main\java\com\carmanagement\service\CarService.java .\src\main\java\com\carmanagement\service\CarService.java
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">copy</span> ..\step-02\src\main\java\com\carmanagement\model\CarInfo.java .\src\main\java\com\carmanagement\model\CarInfo.java
 </code></pre></div>
-<h2 id="createupdate-agents-and-workflows">Create/Update agents and workflows<a class="headerlink" href="#createupdate-agents-and-workflows" title="Permanent link"></a></h2>
+<h2 id="createupdate-agent-and-workflow-declarations">Create/Update agent and workflow declarations<a class="headerlink" href="#createupdate-agent-and-workflow-declarations" title="Permanent link"></a></h2>
 <h3 id="create-a-carconditionfeedbackagent">Create a <code>CarConditionFeedbackAgent</code><a class="headerlink" href="#create-a-carconditionfeedbackagent" title="Permanent link"></a></h3>
 <p>In the <code>src/main/java/com/carmanagement/agentic/agents</code> directory, create the <code>CarConditionFeedbackAgent</code>:</p>
 <div class="highlight"><span class="filename">CarConditionFeedbackAgent.java</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.agents</span><span class="p">;</span>
