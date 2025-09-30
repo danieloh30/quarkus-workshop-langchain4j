@@ -1353,7 +1353,7 @@ You are not viewing the latest version.
 <a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"maintenanceFeedback"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">maintenanceFeedback</span><span class="p">);</span>
 <a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="create-a-new-dispositionagent-for-the-client-side">Create a new <code>DispositionAgent</code> (for the client side)<a class="headerlink" href="#create-a-new-dispositionagent-for-the-client-side" title="Permanent link"></a></h3>
+<h3 id="create-a-new-dispositionagent-for-the-client-side">Create a new <code>DispositionAgent</code> (<strong>for the client side</strong>)<a class="headerlink" href="#create-a-new-dispositionagent-for-the-client-side" title="Permanent link"></a></h3>
 <p>For the disposition agent, in Quarkus runtime 1 we need to create an agent to be used as a type-safe interface for us to invoke the remote A2A agent. This agent will not need to interact with LLMS, so it shouldn’t have system message or user message annotations. The parameters we define on the agent method define what will be sent to the remote agent.</p>
 <p>Create the file in your <code>multi-agent-system/src/main/java/com/carmanagement/agentic/agents</code> directory.</p>
 <div class="highlight"><span class="filename">DispositionAgent.java</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.agents</span><span class="p">;</span>
@@ -1841,9 +1841,9 @@ You are not viewing the latest version.
 </code></pre></div>
 <h3 id="create-a-new-dispositionagentexecutor">Create a new <code>DispositionAgentExecutor</code><a class="headerlink" href="#create-a-new-dispositionagentexecutor" title="Permanent link"></a></h3>
 <p>In the execute method we need to take action on the task:</p>
-<ul>
+<ol>
 <li>
-<p>We initialize a <code>TaskUpdater</code>, which is responsible for making updates to the Task status and recording events (such as Task status updates or additions of artifacts to the task) in the EventQueue.</p>
+<p>We initialize a <code>TaskUpdater</code>, which is responsible for making updates to the Task status and recording events (such as Task status updates or additions of artifacts to the task) in the EventQueue. </p>
 </li>
 <li>
 <p>If there is no task currently in the <code>RequestContext</code> we put the task into the initial submitted state. If the task already exists, we put it into working state.</p>
@@ -1857,7 +1857,7 @@ You are not viewing the latest version.
 <li>
 <p>We put the agent’s response into an artifact in the <code>Task</code> and mark the task complete. This will result in the response being made available to the A2A client agent.</p>
 </li>
-</ul>
+</ol>
 <p>Create the file in your <code>remote-a2a-agent/src/main/java/com/demo</code> directory.</p>
 <div class="highlight"><span class="filename">DispositionAgentExecutor.java</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.demo</span><span class="p">;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
