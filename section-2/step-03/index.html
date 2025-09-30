@@ -820,9 +820,9 @@ You are not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#modify-the-carwashagent-to-use-the-output-from-the-car-wash-feedback-agent" class="md-nav__link">
+  <a href="#modify-the-carwashagent-to-use-the-output-from-the-carwashfeedback-agent" class="md-nav__link">
     <span class="md-ellipsis">
-      Modify the CarWashAgent to use the output from the car wash feedback agent
+      Modify the CarWashAgent to use the output from the CarWashFeedback agent
     </span>
   </a>
   
@@ -1128,9 +1128,9 @@ You are not viewing the latest version.
 </li>
         
           <li class="md-nav__item">
-  <a href="#modify-the-carwashagent-to-use-the-output-from-the-car-wash-feedback-agent" class="md-nav__link">
+  <a href="#modify-the-carwashagent-to-use-the-output-from-the-carwashfeedback-agent" class="md-nav__link">
     <span class="md-ellipsis">
-      Modify the CarWashAgent to use the output from the car wash feedback agent
+      Modify the CarWashAgent to use the output from the CarWashFeedback agent
     </span>
   </a>
   
@@ -1522,7 +1522,7 @@ You are not viewing the latest version.
 <a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="hll"><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"maintenanceRequest"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">maintenanceRequest</span><span class="p">);</span>
 </span><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="modify-the-carwashagent-to-use-the-output-from-the-car-wash-feedback-agent">Modify the <code>CarWashAgent</code> to use the output from the car wash feedback agent<a class="headerlink" href="#modify-the-carwashagent-to-use-the-output-from-the-car-wash-feedback-agent" title="Permanent link"></a></h3>
+<h3 id="modify-the-carwashagent-to-use-the-output-from-the-carwashfeedback-agent">Modify the <code>CarWashAgent</code> to use the output from the CarWashFeedback agent<a class="headerlink" href="#modify-the-carwashagent-to-use-the-output-from-the-carwashfeedback-agent" title="Permanent link"></a></h3>
 <p>We need to modify the <code>CarWashAgent</code> to rely on requests created by the <code>CarWashFeedbackAgent</code>. The <code>CarWashFeedbackAgent</code>, uses an <code>outputName</code> of <code>carWashRequest</code>. Modify the <code>CarWashAgent</code> to use the <code>carWashRequest</code> as its input.</p>
 <p>Update the file in your <code>src/main/java/com/carmanagement/agentic/agents</code> directory.</p>
 <div class="highlight"><span class="filename">CarWashAgent.java</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.agents</span><span class="p">;</span>
@@ -1877,7 +1877,7 @@ You are not viewing the latest version.
 <a id="__codelineno-11-62" name="__codelineno-11-62" href="#__codelineno-11-62"></a><span class="w">                </span><span class="p">.</span><span class="na">tools</span><span class="p">(</span><span class="n">carWashTool</span><span class="p">)</span>
 <a id="__codelineno-11-63" name="__codelineno-11-63" href="#__codelineno-11-63"></a><span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
 <a id="__codelineno-11-64" name="__codelineno-11-64" href="#__codelineno-11-64"></a>
-<a id="__codelineno-11-65" name="__codelineno-11-65" href="#__codelineno-11-65"></a><span class="hll"><span class="w">        </span><span class="c1">// MaintenanceAgent</span>
+<a id="__codelineno-11-65" name="__codelineno-11-65" href="#__codelineno-11-65"></a><span class="hll"><span class="w">        </span><span class="c1">// MaintenanceAgent (1)</span>
 </span><a id="__codelineno-11-66" name="__codelineno-11-66" href="#__codelineno-11-66"></a><span class="hll"><span class="w">        </span><span class="n">MaintenanceAgent</span><span class="w"> </span><span class="n">maintenanceAgent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AgenticServices</span>
 </span><a id="__codelineno-11-67" name="__codelineno-11-67" href="#__codelineno-11-67"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">agentBuilder</span><span class="p">(</span><span class="n">MaintenanceAgent</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
 </span><a id="__codelineno-11-68" name="__codelineno-11-68" href="#__codelineno-11-68"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">chatModel</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="na">baseModel</span><span class="p">())</span>
@@ -1892,7 +1892,7 @@ You are not viewing the latest version.
 <a id="__codelineno-11-77" name="__codelineno-11-77" href="#__codelineno-11-77"></a><span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
 <a id="__codelineno-11-78" name="__codelineno-11-78" href="#__codelineno-11-78"></a>
 <a id="__codelineno-11-79" name="__codelineno-11-79" href="#__codelineno-11-79"></a>
-<a id="__codelineno-11-80" name="__codelineno-11-80" href="#__codelineno-11-80"></a><span class="hll"><span class="w">        </span><span class="c1">// MaintenanceFeedbackAgent</span>
+<a id="__codelineno-11-80" name="__codelineno-11-80" href="#__codelineno-11-80"></a><span class="hll"><span class="w">        </span><span class="c1">// MaintenanceFeedbackAgent (2)</span>
 </span><a id="__codelineno-11-81" name="__codelineno-11-81" href="#__codelineno-11-81"></a><span class="hll"><span class="w">        </span><span class="n">MaintenanceFeedbackAgent</span><span class="w"> </span><span class="n">maintenanceFeedbackAgent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AgenticServices</span>
 </span><a id="__codelineno-11-82" name="__codelineno-11-82" href="#__codelineno-11-82"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">agentBuilder</span><span class="p">(</span><span class="n">MaintenanceFeedbackAgent</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
 </span><a id="__codelineno-11-83" name="__codelineno-11-83" href="#__codelineno-11-83"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">chatModel</span><span class="p">(</span><span class="n">models</span><span class="p">.</span><span class="na">baseModel</span><span class="p">())</span>
@@ -1905,13 +1905,13 @@ You are not viewing the latest version.
 <a id="__codelineno-11-90" name="__codelineno-11-90" href="#__codelineno-11-90"></a><span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
 <a id="__codelineno-11-91" name="__codelineno-11-91" href="#__codelineno-11-91"></a>
 <a id="__codelineno-11-92" name="__codelineno-11-92" href="#__codelineno-11-92"></a>
-<a id="__codelineno-11-93" name="__codelineno-11-93" href="#__codelineno-11-93"></a><span class="hll"><span class="w">        </span><span class="c1">// FeedbackWorkflow</span>
+<a id="__codelineno-11-93" name="__codelineno-11-93" href="#__codelineno-11-93"></a><span class="hll"><span class="w">        </span><span class="c1">// FeedbackWorkflow (3)</span>
 </span><a id="__codelineno-11-94" name="__codelineno-11-94" href="#__codelineno-11-94"></a><span class="hll"><span class="w">        </span><span class="n">FeedbackWorkflow</span><span class="w"> </span><span class="n">feedbackWorkflow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AgenticServices</span>
 </span><a id="__codelineno-11-95" name="__codelineno-11-95" href="#__codelineno-11-95"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">parallelBuilder</span><span class="p">(</span><span class="n">FeedbackWorkflow</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
 </span><a id="__codelineno-11-96" name="__codelineno-11-96" href="#__codelineno-11-96"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">subAgents</span><span class="p">(</span><span class="n">carWashFeedbackAgent</span><span class="p">,</span><span class="w"> </span><span class="n">maintenanceFeedbackAgent</span><span class="p">)</span>
 </span><a id="__codelineno-11-97" name="__codelineno-11-97" href="#__codelineno-11-97"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
 </span><a id="__codelineno-11-98" name="__codelineno-11-98" href="#__codelineno-11-98"></a>
-<a id="__codelineno-11-99" name="__codelineno-11-99" href="#__codelineno-11-99"></a><span class="hll"><span class="w">        </span><span class="c1">// ActionWorkflow</span>
+<a id="__codelineno-11-99" name="__codelineno-11-99" href="#__codelineno-11-99"></a><span class="hll"><span class="w">        </span><span class="c1">// ActionWorkflow (4)</span>
 </span><a id="__codelineno-11-100" name="__codelineno-11-100" href="#__codelineno-11-100"></a><span class="hll"><span class="w">        </span><span class="n">ActionWorkflow</span><span class="w"> </span><span class="n">actionWorkflow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AgenticServices</span>
 </span><a id="__codelineno-11-101" name="__codelineno-11-101" href="#__codelineno-11-101"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">conditionalBuilder</span><span class="p">(</span><span class="n">ActionWorkflow</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
 </span><a id="__codelineno-11-102" name="__codelineno-11-102" href="#__codelineno-11-102"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">subAgents</span><span class="p">(</span>
@@ -1926,7 +1926,7 @@ You are not viewing the latest version.
 </span><a id="__codelineno-11-111" name="__codelineno-11-111" href="#__codelineno-11-111"></a><span class="hll"><span class="w">                </span><span class="p">)</span>
 </span><a id="__codelineno-11-112" name="__codelineno-11-112" href="#__codelineno-11-112"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
 </span><a id="__codelineno-11-113" name="__codelineno-11-113" href="#__codelineno-11-113"></a>
-<a id="__codelineno-11-114" name="__codelineno-11-114" href="#__codelineno-11-114"></a><span class="hll"><span class="w">        </span><span class="c1">// CarProcessingWorkflow</span>
+<a id="__codelineno-11-114" name="__codelineno-11-114" href="#__codelineno-11-114"></a><span class="hll"><span class="w">        </span><span class="c1">// CarProcessingWorkflow (5)</span>
 </span><a id="__codelineno-11-115" name="__codelineno-11-115" href="#__codelineno-11-115"></a><span class="hll"><span class="w">        </span><span class="n">CarProcessingWorkflow</span><span class="w"> </span><span class="n">carProcessingWorkflow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AgenticServices</span>
 </span><a id="__codelineno-11-116" name="__codelineno-11-116" href="#__codelineno-11-116"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">sequenceBuilder</span><span class="p">(</span><span class="n">CarProcessingWorkflow</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
 </span><a id="__codelineno-11-117" name="__codelineno-11-117" href="#__codelineno-11-117"></a><span class="hll"><span class="w">                </span><span class="p">.</span><span class="na">subAgents</span><span class="p">(</span><span class="n">feedbackWorkflow</span><span class="p">,</span><span class="w"> </span><span class="n">actionWorkflow</span><span class="p">,</span><span class="w"> </span><span class="n">carConditionFeedbackAgent</span><span class="p">)</span>
@@ -1986,7 +1986,7 @@ You are not viewing the latest version.
 <a id="__codelineno-11-171" name="__codelineno-11-171" href="#__codelineno-11-171"></a><span class="cm">     * @param agenticScope The current AgenticScope containing request states</span>
 <a id="__codelineno-11-172" name="__codelineno-11-172" href="#__codelineno-11-172"></a><span class="cm">     * @return The appropriate AgentType to handle the car</span>
 <a id="__codelineno-11-173" name="__codelineno-11-173" href="#__codelineno-11-173"></a><span class="cm">     */</span>
-<a id="__codelineno-11-174" name="__codelineno-11-174" href="#__codelineno-11-174"></a><span class="hll"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">AgentType</span><span class="w"> </span><span class="nf">selectAgent</span><span class="p">(</span><span class="n">AgenticScope</span><span class="w"> </span><span class="n">agenticScope</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-174" name="__codelineno-11-174" href="#__codelineno-11-174"></a><span class="hll"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">AgentType</span><span class="w"> </span><span class="nf">selectAgent</span><span class="p">(</span><span class="n">AgenticScope</span><span class="w"> </span><span class="n">agenticScope</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// (6)</span>
 </span><a id="__codelineno-11-175" name="__codelineno-11-175" href="#__codelineno-11-175"></a><span class="hll"><span class="w">        </span><span class="n">AgentType</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
 </span><a id="__codelineno-11-176" name="__codelineno-11-176" href="#__codelineno-11-176"></a><span class="hll">
 </span><a id="__codelineno-11-177" name="__codelineno-11-177" href="#__codelineno-11-177"></a><span class="hll"><span class="w">        </span><span class="c1">// Check maintenance first (higher priority)</span>
@@ -2014,16 +2014,16 @@ You are not viewing the latest version.
 <a id="__codelineno-11-199" name="__codelineno-11-199" href="#__codelineno-11-199"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="define-the-maintenanceagent">Define the <code>MaintenanceAgent</code><a class="headerlink" href="#define-the-maintenanceagent" title="Permanent link"></a></h3>
-<p>Notice the definition of the <code>MaintenanceAgent</code> (above), associating it with the injected <code>MaintenanceTool</code>.</p>
+<p>Notice the definition of the <code>MaintenanceAgent</code> <strong>(1)</strong>, associating it with the injected <code>MaintenanceTool</code>.</p>
 <h3 id="define-the-maintenancefeedbackagent">Define the <code>MaintenanceFeedbackAgent</code><a class="headerlink" href="#define-the-maintenancefeedbackagent" title="Permanent link"></a></h3>
-<p>Notice the definition of the <code>MaintenanceFeedbackAgent</code> (above).</p>
+<p>Notice the definition of the <code>MaintenanceFeedbackAgent</code> <strong>(2)</strong>.</p>
 <h3 id="define-a-parallel-workflow-feedbackworkflow-including-the-carwashfeedbackagent-and-maintenancefeedbackagent">Define a parallel workflow, <code>FeedbackWorkflow</code>, including the <code>CarWashFeedbackAgent</code> and <code>MaintenanceFeedbackAgent</code><a class="headerlink" href="#define-a-parallel-workflow-feedbackworkflow-including-the-carwashfeedbackagent-and-maintenancefeedbackagent" title="Permanent link"></a></h3>
-<p>Notice, in the <code>CarManagementService</code> (above), that we’ve defined the <code>FeedbackWorkflow</code> using the agent interface we created earlier. This is a parallel workflow that runs both feedback agents simultaneously to analyze the car’s condition from different perspectives.</p>
+<p>Notice, in the <code>CarManagementService</code>, that we’ve defined the <code>FeedbackWorkflow</code> <strong>(3)</strong> using the agent interface we created earlier. This is a parallel workflow that runs both feedback agents simultaneously to analyze the car’s condition from different perspectives.</p>
 <h3 id="define-a-conditional-workflow-actionworkflow-including-the-carwashagent-and-maintenanceagent">Define a conditional workflow, <code>ActionWorkflow</code>, including the <code>CarWashAgent</code> and <code>MaintenanceAgent</code><a class="headerlink" href="#define-a-conditional-workflow-actionworkflow-including-the-carwashagent-and-maintenanceagent" title="Permanent link"></a></h3>
-<p>Also in the <code>CarManagementService</code> (above), notice the definition of the <code>ActionWorkflow</code>, which is a conditional workflow including the maintenance agent and the car wash agent as subagents. Conditional workflows are sequence workflows where each agent in the workflow is paired with a condition that must evaluate to true in order for the agent to be called (otherwise the agent is skipped).</p>
-<p>The maintenance agent will only execute if the <code>selectAgent</code> method indicates maintenance is required. The car wash agent will only execute if the <code>selectAgent</code> method indicates a car wash is required. The <code>selectAgent</code> method looks at the values of <code>maintenanceRequest</code> and <code>carWashRequest</code>, in the agentic scope, to make the determination. In this way, we have used conditions to build a kind of router, choosing which of the agents to run for each request.</p>
+<p>Also in the <code>CarManagementService</code>, notice the definition of the <code>ActionWorkflow</code> <strong>(4)</strong>, which is a conditional workflow including the maintenance agent and the car wash agent as subagents. Conditional workflows are sequence workflows where each agent in the workflow is paired with a condition that must evaluate to true in order for the agent to be called (otherwise the agent is skipped).</p>
+<p>The maintenance agent will only execute if the <code>selectAgent</code> <strong>(6)</strong> method indicates maintenance is required. The car wash agent will only execute if the <code>selectAgent</code> method indicates a car wash is required. The <code>selectAgent</code> method looks at the values of <code>maintenanceRequest</code> and <code>carWashRequest</code>, in the agentic scope, to make the determination. In this way, we have used conditions to build a kind of router, choosing which of the agents to run for each request.</p>
 <h3 id="modify-the-sequence-workflow-to-include-the-feedback-workflow-the-action-workflow-and-the-car-condition-feedback-agent">Modify the sequence workflow, to include the feedback workflow, the action workflow and the car condition feedback agent<a class="headerlink" href="#modify-the-sequence-workflow-to-include-the-feedback-workflow-the-action-workflow-and-the-car-condition-feedback-agent" title="Permanent link"></a></h3>
-<p>Finally, in the code above, we redefined the <code>CarProcessingWorkflow</code> to sequentially run the feedback workflow, the action workflow, and the car condition feedback agent:</p>
+<p>Finally, in the code above, we redefined the <code>CarProcessingWorkflow</code> <strong>(5)</strong> to sequentially run the feedback workflow, the action workflow, and the car condition feedback agent:</p>
 <p>Notice that the <code>CarProcessingWorkflow</code> is a nested workflow (workflows within workflows).</p>
 <h2 id="try-out-the-new-workflow">Try out the new workflow<a class="headerlink" href="#try-out-the-new-workflow" title="Permanent link"></a></h2>
 <p>In the <strong>Returns</strong> section of the UI you should now be able to see a <strong>Maintenance Return</strong> tab in the <strong>Returns</strong> section. This is where the Miles of Smiles maintenance team will enter their feedback when they are finished working on the car. </p>
