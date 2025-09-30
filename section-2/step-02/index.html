@@ -795,15 +795,6 @@ You are not viewing the latest version.
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#modify-the-carmanagementservice-to-use-the-sequence-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modify the CarManagementService to Use the Sequence Workflow
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1014,15 +1005,6 @@ You are not viewing the latest version.
   <a href="#define-the-sequence-workflow-in-carmanagementservice" class="md-nav__link">
     <span class="md-ellipsis">
       Define the Sequence Workflow in CarManagementService
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#modify-the-carmanagementservice-to-use-the-sequence-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modify the CarManagementService to Use the Sequence Workflow
     </span>
   </a>
   
@@ -1307,7 +1289,6 @@ You are not viewing the latest version.
 <li>The <code>createCarProcessingWorkflow</code> method needs to define the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> — the 2 agents we want to include in our sequence workflow.</li>
 <li>The <code>createCarProcessingWorkflow</code> method then needs to define the sequence workflow, <code>CarProcessingWorkflow</code>, including the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> as subagents (the subagent list represents the list of agents that are in the workflow).</li>
 </ol>
-<h3 id="modify-the-carmanagementservice-to-use-the-sequence-workflow">Modify the <code>CarManagementService</code> to Use the Sequence Workflow<a class="headerlink" href="#modify-the-carmanagementservice-to-use-the-sequence-workflow" title="Permanent link"></a></h3>
 <p>In the <code>CarManagementService</code>, let’s modify the <code>processCarReturn</code> method to call the <code>carProcessingWorkflow</code> and process its results. </p>
 <ol>
 <li>
