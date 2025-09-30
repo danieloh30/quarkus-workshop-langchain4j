@@ -1287,12 +1287,11 @@ You are not viewing the latest version.
 <ol>
 <li>Let’s modify the <code>initialize</code> method to initialize the <code>CarProcessingWorkflow</code> when the service is instantiated.</li>
 <li>The <code>createCarProcessingWorkflow</code> method needs to define the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> — the 2 agents we want to include in our sequence workflow.</li>
-<li>The <code>createCarProcessingWorkflow</code> method then needs to define the sequence workflow, <code>CarProcessingWorkflow</code>, including the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> as subagents (the subagent list represents the list of agents that are in the workflow).</li>
-</ol>
-<p>In the <code>CarManagementService</code>, let’s modify the <code>processCarReturn</code> method to call the <code>carProcessingWorkflow</code> and process its results. </p>
-<ol>
 <li>
-<p>We need to invoke <code>carProcessingWorkflow.processCarReturn</code>, the agent method, to cause each of the subagents to be executed in sequence. </p>
+<p>The <code>createCarProcessingWorkflow</code> method then needs to define the sequence workflow, <code>CarProcessingWorkflow</code>, including the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> as subagents (the subagent list represents the list of agents that are in the workflow).</p>
+</li>
+<li>
+<p>In the <code>CarManagementService</code>, let’s modify the <code>processCarReturn</code> method to call the <code>carProcessingWorkflow</code> and process its results. We need to invoke <code>carProcessingWorkflow.processCarReturn</code>, the agent method, to cause each of the subagents to be executed in sequence. </p>
 </li>
 <li>
 <p>Retrieve the <code>carCondition</code> value from the <code>AgenticScope</code>, and use that value as the new condition for the car.</p>
