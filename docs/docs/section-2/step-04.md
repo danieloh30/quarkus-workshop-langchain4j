@@ -8,16 +8,16 @@ The Miles of Smiles team has decided they need to get rid of cars that are no lo
 
 The Agent2Agent protocol can be used to enable agents to communicate to each other remotely. 
 
-LangChain4j provides the `langchain4j-agentic-a2a` module, which can be used with `langchain4j-agentic` to add remote agents to a workflow in the same way as you have been adding local agents. We will declare an A2A agent in our existing app that we will then add to our workflow. Communicating with this local agent will make a2a send the agent request to the remotely connected agent.
+LangChain4j provides the `langchain4j-agentic-a2a` module, which can be used with `langchain4j-agentic` to add remote agents to a workflow in the same way as you have been adding local agents. We will declare an A2A agent in our existing app that we will then add to our workflow. Communicating with this local agent will make A2A send the agent request to the remotely connected agent.
 
-You will see how the A2A sdk handles the protocol in our remote A2A server built on Quarkus. As part of the protocol, agents defined in the server must provide an `AgentCard` which describes:
+You will see how the A2A SDK handles the protocol in our remote A2A server built on Quarkus. As part of the protocol, agents defined in the server must provide an `AgentCard` which describes:
 
-- The name and description of the agent
-- The agent's capabilities (the parts of the A2A protocol it supports)
-- The agent's skills (what the agent's purpose is)
-- etc.
+- The name and description of the agent.
+- The agent's capabilities (the parts of the A2A protocol it supports).
+- The agent's skills (what the agent's purpose is).
+- Etc.
 
-A2A Agents must also implement an `AgentExecutor`. The A2A sdk calls the `AgentExecutor.execute` method when it wants to invoke your agent. Your implementation of the `AgentExecutor` interface is responsible for calling your agent (for example your LangChain4j AI service or Agent). The `AgentExecutor.execute` method has the following signature:
+A2A Agents must also implement an `AgentExecutor`. The A2A SDK calls the `AgentExecutor.execute` method when it wants to invoke your agent. Your implementation of the `AgentExecutor` interface is responsible for calling your agent (for example your LangChain4j AI service or Agent). The `AgentExecutor.execute` method has the following signature:
 
 ```java
 public void execute(RequestContext context, EventQueue eventQueue)
@@ -39,6 +39,11 @@ Our architecture includes 2 Quarkus runtimes -- one running our agentic workflow
 
 ## Before you begin
 
+You can either use the code from `step-01` and continue from there, or check the final code of the step located in the `step-04` directory.
+    
+??? important "Do not forget to close the application"
+    If you have the application running from the previous step and decide to use the `step-03` directory, make sure to stop it (CTRL+C) before continuing.
+
 If you are continuing to build the app in the `step-01` directory, start by copying some files (which don't relate to the experience of building agentic AI apps) from `step-04`. Run the following command from your `section-2` directory:
 
 For Linux/macOS:
@@ -47,21 +52,21 @@ For Linux/macOS:
 ```
 
 ## Quarkus Runtime 1
-Starting from our app in `step-03`, we need to do the following for the original Quarkus Runtime 1:
+Starting from where we left off at the end of `step-03`, we need to do the following for the original Quarkus Runtime 1:
 
 Create/Update agent and workflow declarations:
 
-  - Create a new `DispositionFeedbackAgent`
-  - Create a new `DispositionAgent` (for the client side)
-  - Modify the `ActionWorkflow` to use output from the `DispositionFeedbackAgent`
-  - Modify the `CarConditionFeedbackAgent` to use output from the `DispositionFeedbackAgent`
+  - Create a new `DispositionFeedbackAgent`.
+  - Create a new `DispositionAgent` (for the client side).
+  - Modify the `ActionWorkflow` to use output from the `DispositionFeedbackAgent`.
+  - Modify the `CarConditionFeedbackAgent` to use output from the `DispositionFeedbackAgent`.
 
 Define the agents and workflows:
 
-  - Define the `DispositionFeedbackAgent`
-  - Define the `DispositionAgent`
-  - Include the `DispositionFeedbackAgent` in the parallel workflow
-  - Include the `DispositionAgent` in the conditional workflow
+  - Define the `DispositionFeedbackAgent`.
+  - Define the `DispositionAgent`.
+  - Include the `DispositionFeedbackAgent` in the parallel workflow.
+  - Include the `DispositionAgent` in the conditional workflow.
 
 ## Create/Update agent and workflow declarations:
 
@@ -175,13 +180,13 @@ Create the file in your `remote-a2a-agent/src/main/java/com/demo` directory.
 
 The agent card provides:
 
-- A description of the agent
-- A URL to invoke the agent with
-- A URL for the agent's documentation 
-- An indication of the agent's supported A2A capabilities
-- Input and output modes
-- A description of the skills the agent provides
-- An A2A protocol version
+- A description of the agent.
+- A URL to invoke the agent with.
+- A URL for the agent's documentation.
+- An indication of the agent's supported A2A capabilities.
+- Input and output modes.
+- A description of the skills the agent provides.
+- An A2A protocol version.
 
 This information is provided to clients that connect to the A2A server so that they know when and how to use the agent.
 

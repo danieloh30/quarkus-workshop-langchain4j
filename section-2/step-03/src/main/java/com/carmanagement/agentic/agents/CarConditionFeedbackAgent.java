@@ -18,25 +18,25 @@ public interface CarConditionFeedbackAgent {
         Do not add any headers or prefixes to your response.
         """)
     @UserMessage("""
-            Car Information:
-            Make: {{carMake}}
-            Model: {{carModel}}
-            Year: {{carYear}}
-            Previous Condition: {{carCondition}}
-            
-            Feedback from other agents:
-            Car Wash Recommendation: {{carWashRequest}}
-            Maintenance Recommendation: {{maintenanceRequest}}
-            """)
+        Car Information:
+        Make: {{carMake}}
+        Model: {{carModel}}
+        Year: {{carYear}}
+        Previous Condition: {{carCondition}}
+        
+        Feedback from other agents:
+        Car Wash Recommendation: {{carWashRequest}}
+        Maintenance Recommendation: {{maintenanceRequest}}
+        """)
     @Agent(outputName="carCondition", description="Car condition analyzer. Determines the current condition of a car based on feedback.")
     String analyzeForCondition(
-            @V("carMake") String carMake,
-            @V("carModel") String carModel,
-            @V("carYear") Integer carYear,
-            @V("carNumber") Integer carNumber,
-            @V("carCondition") String carCondition,
-            @V("carWashRequest") String carWashRequest,
-            @V("maintenanceRequest") String maintenanceRequest);
+        @V("carMake") String carMake,
+        @V("carModel") String carModel,
+        @V("carYear") Integer carYear,
+        @V("carNumber") Integer carNumber,
+        @V("carCondition") String carCondition,
+        @V("carWashRequest") String carWashRequest,
+        @V("maintenanceRequest") String maintenanceRequest);
 }
 
 

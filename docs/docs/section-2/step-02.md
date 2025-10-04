@@ -101,9 +101,15 @@ Here's how the sequence workflow is defined in `CarManagementService`:
 
 ## Try Out the New Workflow
 
-Now that we have updated the workflow to update the car condition we can try it in the UI. 
+Now that we have updated the workflow to add the car condition we can try it in the UI. 
 
-In your browser, access [http://localhost:8080](http://localhost:8080){target="_blank"}.
+If you're working from the `section-2/step-02` directory (or you had stopped the application), start the application with the following command:
+
+```bash
+./mvnw quarkus:dev
+```
+
+Now that you've made sure the app is running, you can navigate to [http://localhost:8080](http://localhost:8080){target="_blank"} to access the updated UI.
 
 Notice that the **Fleet Status** section of the UI now has a "Condition" column, indicating the last known condition of the car.
 
@@ -119,13 +125,13 @@ After submitting the feedback (by hitting the **Return** button), and a brief pa
 
 Take a moment to look at the logs from your Quarkus runtime. You should be able to identify the following sequence of events:
 
-1. an HTTP request to the car wash agent
-2. an HTTP response from the car wash agent, requesting to run the requestCarWash function
-3. the CarWashTool output, requesting interior cleaning of the car (and possibly other options)
-4. an HTTP request to the car wash agent, including the response from the car wash tool
-5. an HTTP response from the car wash agent, stating that the car wash has been requested
-6. an HTTP request to the car condition feedback agent
-7. an HTTP response from the car condition feedback agent, providing a new car condition summary
+1. An HTTP request to the car wash agent.
+2. An HTTP response from the car wash agent, requesting to run the requestCarWash function.
+3. The CarWashTool output, requesting interior cleaning of the car (and possibly other options).
+4. An HTTP request to the car wash agent, including the response from the car wash tool.
+5. An HTTP response from the car wash agent, stating that the car wash has been requested.
+6. An HTTP request to the car condition feedback agent.
+7. An HTTP response from the car condition feedback agent, providing a new car condition summary.
 
 ## When to Use Parallel Workflows
 

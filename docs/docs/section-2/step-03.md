@@ -6,17 +6,17 @@ The Miles of Smiles management team has decided to get more serious about car ma
 
 There are a number of things that we now need our car management app to handle:
 
-- Car returns from rentals, the car wash, or the maintenance department
-- Analyzing the return feedback to see if a car wash and/or maintenance are required
-- Based on the feedback, getting the maintenance department to work on the car
-- Based on the feedback, getting the car wash team to clean the car
-- Automatically updating the car condition based on the analysis of the feedback
+- Car returns from rentals, the car wash, or the maintenance department.
+- Analyzing the return feedback to see if a car wash and/or maintenance are required.
+- Based on the feedback, getting the maintenance department to work on the car.
+- Based on the feedback, getting the car wash team to clean the car.
+- Automatically updating the car condition based on the analysis of the feedback.
 
 ## Nested Workflows
 
 In the previous step, we used a sequence workflow, which ran the car wash agent followed by the car condition feedback agent. In this step, we will build a sequence workflow that contains a parallel workflow, a conditional workflow, and a single agent (see diagram below). 
 
-At each step in the workflow, the agentic framework checks the inputs needed by the next workflow or agent that needs to run. For the root of the workflow (in this case our sequence workflow), parameters are provided by the caller of the workflow interface. In subsequent steps within the workflow, the framework gathers values for input parameters from the `AgenticScope`. The output from each agent or workflow is added to the `AgenticScope` (using the agent's `outputName` setting). The output from a workflow is typically the output of the last agent in the workflow. When building the agent/workflow, you can also specify an output method, which will be run after the response from the agent/workflow is created — this is particularly useful for parallel workflows, to customize what to fill into the corresponding `outputName` for that agent/workflow.
+At each step in the workflow, the agentic framework checks the inputs needed by the next workflow or agent that needs to run. When the outer-most workflow starts (in this case our sequence workflow), parameters are provided by the caller of the workflow interface. In subsequent steps within the workflow, the framework gathers values for input parameters from the `AgenticScope`. The output from each agent or workflow is added to the `AgenticScope` (using the agent's `outputName` setting). The output from a workflow is typically the output of the last agent in the workflow. When building the agent/workflow, you can also specify an output method, which will be run after the response from the agent/workflow is created — this is particularly useful for parallel workflows, to customize what to fill into the corresponding `outputName` for that agent/workflow.
 
 ## What are we going to build?
 
@@ -50,6 +50,11 @@ Define the agents and workflows:
 
 
 ## Before You Begin
+
+You can either use the code from `step-01` and continue from there, or check the final code of the step located in the `step-03` directory.
+    
+??? important "Do not forget to close the application"
+    If you have the application running from the previous step and decide to use the `step-03` directory, make sure to stop it (CTRL+C) before continuing.
     
 If you are continuing to build the app in the `step-01` directory, start by copying some files (which don't relate to the experience of building agentic AI apps) from `step-03`. Run the following command from your `section-2` directory:
 
@@ -128,7 +133,7 @@ Update the file in your `src/main/java/com/carmanagement/agentic/agents` directo
 
 ### Create an `ActionWorkflow`
 
-In cases where the feedback agents indicate car maintenance is required, we want to invoke the maintenance agent (to request maintenance). In cases where no maintenance is required, but a car wash is required, we want to invoke the car wash agent (to request a car wash). If the feedback indicates neither is required then we should act accordingly. For this, we will need a conditional workflow.
+In cases where the feedback agents indicate car maintenance is required, we want to invoke the maintenance agent (to request maintenance). In cases where no maintenance is required, but a car wash is required, we want to invoke the car wash agent (to request a car wash). If the feedback indicates neither is required then we should not run either agent. For this, we will need a conditional workflow.
 
 Create an `ActionWorkflow` which we will use for our conditional workflow, using the `carWashRequest` and `maintenanceRequest` as inputs.
 
@@ -206,6 +211,12 @@ Notice that the `CarProcessingWorkflow` is a nested workflow (workflows within w
 
 
 ## Try out the new workflow
+
+If you're working from the `section-2/step-03` directory (or you had stopped the application), start the application with the following command:
+
+```bash
+./mvnw quarkus:dev
+```
 
 In the **Returns** section of the UI you should now be able to see a **Maintenance Return** tab in the **Returns** section. This is where the Miles of Smiles maintenance team will enter their feedback when they are finished working on the car. 
 

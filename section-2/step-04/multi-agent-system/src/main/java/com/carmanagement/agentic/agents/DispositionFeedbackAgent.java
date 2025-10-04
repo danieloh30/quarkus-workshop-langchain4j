@@ -31,14 +31,14 @@ public interface DispositionFeedbackAgent {
         """)
     @Agent(outputName="dispositionRequest", description="Car disposition analyzer. Using feedback, determines if a car should be disposed of.")
     String analyzeForDisposition(
-            @V("carMake") String carMake,
-            @V("carModel") String carModel,
-            @V("carYear") Integer carYear,
-            @V("carNumber") Integer carNumber,
-            @V("carCondition") String carCondition,
-            @V("rentalFeedback") String rentalFeedback,
-            @V("carWashFeedback") String carWashFeedback,
-            @V("maintenanceFeedback") String maintenanceFeedback);
+        @V("carMake") String carMake,
+        @V("carModel") String carModel,
+        @V("carYear") Integer carYear,
+        @V("carNumber") Integer carNumber,
+        @V("carCondition") String carCondition,
+        @V("rentalFeedback") String rentalFeedback,
+        @V("carWashFeedback") String carWashFeedback,
+        @V("maintenanceFeedback") String maintenanceFeedback);
 }
 
 
