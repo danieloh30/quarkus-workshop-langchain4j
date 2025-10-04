@@ -1261,15 +1261,15 @@ You are not viewing the latest version.
 <p>The Miles of Smiles management team has decided to get more serious about car maintenance. When cars are returned, the provided feedback should be analyzed — to see if car cleaning is needed and also to see if car maintenance is needed. If maintenance is needed then the car should be given to the maintenance team. If the car doesn’t need maintenance but does need cleaning then it should be given to the car wash team. </p>
 <p>There are a number of things that we now need our car management app to handle:</p>
 <ul>
-<li>Car returns from rentals, the car wash, or the maintenance department</li>
-<li>Analyzing the return feedback to see if a car wash and/or maintenance are required</li>
-<li>Based on the feedback, getting the maintenance department to work on the car</li>
-<li>Based on the feedback, getting the car wash team to clean the car</li>
-<li>Automatically updating the car condition based on the analysis of the feedback</li>
+<li>Car returns from rentals, the car wash, or the maintenance department.</li>
+<li>Analyzing the return feedback to see if a car wash and/or maintenance are required.</li>
+<li>Based on the feedback, getting the maintenance department to work on the car.</li>
+<li>Based on the feedback, getting the car wash team to clean the car.</li>
+<li>Automatically updating the car condition based on the analysis of the feedback.</li>
 </ul>
 <h2 id="nested-workflows">Nested Workflows<a class="headerlink" href="#nested-workflows" title="Permanent link"></a></h2>
 <p>In the previous step, we used a sequence workflow, which ran the car wash agent followed by the car condition feedback agent. In this step, we will build a sequence workflow that contains a parallel workflow, a conditional workflow, and a single agent (see diagram below). </p>
-<p>At each step in the workflow, the agentic framework checks the inputs needed by the next workflow or agent that needs to run. For the root of the workflow (in this case our sequence workflow), parameters are provided by the caller of the workflow interface. In subsequent steps within the workflow, the framework gathers values for input parameters from the <code>AgenticScope</code>. The output from each agent or workflow is added to the <code>AgenticScope</code> (using the agent’s <code>outputName</code> setting). The output from a workflow is typically the output of the last agent in the workflow. When building the agent/workflow, you can also specify an output method, which will be run after the response from the agent/workflow is created — this is particularly useful for parallel workflows, to customize what to fill into the corresponding <code>outputName</code> for that agent/workflow.</p>
+<p>At each step in the workflow, the agentic framework checks the inputs needed by the next workflow or agent that needs to run. When the outer-most workflow starts (in this case our sequence workflow), parameters are provided by the caller of the workflow interface. In subsequent steps within the workflow, the framework gathers values for input parameters from the <code>AgenticScope</code>. The output from each agent or workflow is added to the <code>AgenticScope</code> (using the agent’s <code>outputName</code> setting). The output from a workflow is typically the output of the last agent in the workflow. When building the agent/workflow, you can also specify an output method, which will be run after the response from the agent/workflow is created — this is particularly useful for parallel workflows, to customize what to fill into the corresponding <code>outputName</code> for that agent/workflow.</p>
 <h2 id="what-are-we-going-to-build">What are we going to build?<a class="headerlink" href="#what-are-we-going-to-build" title="Permanent link"></a></h2>
 <p><img alt="App Blueprint" class="center" src="../../images/agentic-app-3.png"></p>
 <p>Starting from our app in <code>step-02</code>, we need to:</p>
@@ -1298,6 +1298,11 @@ You are not viewing the latest version.
 <li>Modify the sequence workflow, to include the feedback workflow, the action workflow and the car condition feedback agent</li>
 </ul>
 <h2 id="before-you-begin">Before You Begin<a class="headerlink" href="#before-you-begin" title="Permanent link"></a></h2>
+<p>You can either use the code from <code>step-01</code> and continue from there, or check the final code of the step located in the <code>step-03</code> directory.</p>
+<details class="important">
+<summary>Do not forget to close the application</summary>
+<p>If you have the application running from the previous step and decide to use the <code>step-03</code> directory, make sure to stop it (CTRL+C) before continuing.</p>
+</details>
 <p>If you are continuing to build the app in the <code>step-01</code> directory, start by copying some files (which don’t relate to the experience of building agentic AI apps) from <code>step-03</code>. Run the following command from your <code>section-2</code> directory:</p>
 <p>For Linux/macOS:
 </p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./setup-step-03.sh
@@ -1541,7 +1546,7 @@ You are not viewing the latest version.
 </span><a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="create-an-actionworkflow">Create an <code>ActionWorkflow</code><a class="headerlink" href="#create-an-actionworkflow" title="Permanent link"></a></h3>
-<p>In cases where the feedback agents indicate car maintenance is required, we want to invoke the maintenance agent (to request maintenance). In cases where no maintenance is required, but a car wash is required, we want to invoke the car wash agent (to request a car wash). If the feedback indicates neither is required then we should act accordingly. For this, we will need a conditional workflow.</p>
+<p>In cases where the feedback agents indicate car maintenance is required, we want to invoke the maintenance agent (to request maintenance). In cases where no maintenance is required, but a car wash is required, we want to invoke the car wash agent (to request a car wash). If the feedback indicates neither is required then we should not run either agent. For this, we will need a conditional workflow.</p>
 <p>Create an <code>ActionWorkflow</code> which we will use for our conditional workflow, using the <code>carWashRequest</code> and <code>maintenanceRequest</code> as inputs.</p>
 <p>Create the file in your <code>src/main/java/com/carmanagement/agentic/workflow</code> directory.</p>
 <div class="highlight"><span class="filename">ActionWorkflow.java</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.workflow</span><span class="p">;</span>
@@ -1592,25 +1597,25 @@ You are not viewing the latest version.
 <a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="s">        Do not add any headers or prefixes to your response.</span>
 <a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="s">        """</span><span class="p">)</span>
 <a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="nd">@UserMessage</span><span class="p">(</span><span class="s">"""</span>
-<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="s">            Car Information:</span>
-<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="s">            Make: {{carMake}}</span>
-<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="s">            Model: {{carModel}}</span>
-<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="s">            Year: {{carYear}}</span>
-<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="s">            Previous Condition: {{carCondition}}</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="s">        Car Information:</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="s">        Make: {{carMake}}</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="s">        Model: {{carModel}}</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="s">        Year: {{carYear}}</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="s">        Previous Condition: {{carCondition}}</span>
 <a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>
-<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="hll"><span class="s">            Feedback from other agents:</span>
-</span><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="hll"><span class="s">            Car Wash Recommendation: {{carWashRequest}}</span>
-</span><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="hll"><span class="s">            Maintenance Recommendation: {{maintenanceRequest}}</span>
-</span><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="s">            """</span><span class="p">)</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="hll"><span class="s">        Feedback from other agents:</span>
+</span><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="hll"><span class="s">        Car Wash Recommendation: {{carWashRequest}}</span>
+</span><a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="hll"><span class="s">        Maintenance Recommendation: {{maintenanceRequest}}</span>
+</span><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="s">        """</span><span class="p">)</span>
 <a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">    </span><span class="nd">@Agent</span><span class="p">(</span><span class="n">outputName</span><span class="o">=</span><span class="s">"carCondition"</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="o">=</span><span class="s">"Car condition analyzer. Determines the current condition of a car based on feedback."</span><span class="p">)</span>
 <a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">analyzeForCondition</span><span class="p">(</span>
-<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carMake"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carMake</span><span class="p">,</span>
-<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carModel"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carModel</span><span class="p">,</span>
-<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carYear"</span><span class="p">)</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">carYear</span><span class="p">,</span>
-<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carNumber"</span><span class="p">)</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">carNumber</span><span class="p">,</span>
-<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carCondition"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carCondition</span><span class="p">,</span>
-<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="hll"><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carWashRequest"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carWashRequest</span><span class="p">,</span>
-</span><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="hll"><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"maintenanceRequest"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">maintenanceRequest</span><span class="p">);</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carMake"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carMake</span><span class="p">,</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carModel"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carModel</span><span class="p">,</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carYear"</span><span class="p">)</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">carYear</span><span class="p">,</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carNumber"</span><span class="p">)</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">carNumber</span><span class="p">,</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carCondition"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carCondition</span><span class="p">,</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="hll"><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carWashRequest"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carWashRequest</span><span class="p">,</span>
+</span><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="hll"><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"maintenanceRequest"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">maintenanceRequest</span><span class="p">);</span>
 </span><a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="create-the-maintenance-tool-and-maintenance-returns-api">Create the maintenance tool and maintenance returns API<a class="headerlink" href="#create-the-maintenance-tool-and-maintenance-returns-api" title="Permanent link"></a></h2>
@@ -2016,10 +2021,13 @@ You are not viewing the latest version.
 <p>Finally, in the code above, we redefined the <code>CarProcessingWorkflow</code> <strong>(5)</strong> to sequentially run the feedback workflow, the action workflow, and the car condition feedback agent:</p>
 <p>Notice that the <code>CarProcessingWorkflow</code> is a nested workflow (workflows within workflows).</p>
 <h2 id="try-out-the-new-workflow">Try out the new workflow<a class="headerlink" href="#try-out-the-new-workflow" title="Permanent link"></a></h2>
+<p>If you’re working from the <code>section-2/step-03</code> directory (or you had stopped the application), start the application with the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>./mvnw<span class="w"> </span>quarkus:dev
+</code></pre></div>
 <p>In the <strong>Returns</strong> section of the UI you should now be able to see a <strong>Maintenance Return</strong> tab in the <strong>Returns</strong> section. This is where the Miles of Smiles maintenance team will enter their feedback when they are finished working on the car. </p>
 <p><img alt="Maintenance Returns Tab" class="center" src="../../images/agentic-UI-maintenance-returns-tab.png"></p>
 <p>On the <strong>Maintenance Return</strong> tab, for <strong>car 3</strong>, enter feedback to indicate the scratch (mentioned in the car condition) has been fixed, but the car needs to be cleaned:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>buffed out the scratch. car could use a wash now.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>buffed out the scratch. car could use a wash now.
 </code></pre></div>
 <p>Once the request completes, you should see that the car’s status has been updated in the Fleet Status section.</p>
 <p><img alt="Updated Fleet Status" class="center" src="../../images/agentic-UI-fleet-status.png"></p>

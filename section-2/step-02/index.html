@@ -1090,24 +1090,24 @@ You are not viewing the latest version.
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s">        Do not add any headers or prefixes to your response.</span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s">        """</span><span class="p">)</span>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="nd">@UserMessage</span><span class="p">(</span><span class="s">"""</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s">            Car Information:</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s">            Make: {{carMake}}</span>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s">            Model: {{carModel}}</span>
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s">            Year: {{carYear}}</span>
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s">            Previous Condition: {{carCondition}}</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s">        Car Information:</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="s">        Make: {{carMake}}</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s">        Model: {{carModel}}</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s">        Year: {{carYear}}</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s">        Previous Condition: {{carCondition}}</span>
 <a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s">            Rental Feedback: {{rentalFeedback}}</span>
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s">            Car Wash Feedback: {{carWashFeedback}}</span>
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s">            """</span><span class="p">)</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s">        Rental Feedback: {{rentalFeedback}}</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s">        Car Wash Feedback: {{carWashFeedback}}</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s">        """</span><span class="p">)</span>
 <a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="nd">@Agent</span><span class="p">(</span><span class="n">outputName</span><span class="o">=</span><span class="s">"carCondition"</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="o">=</span><span class="s">"Car condition analyzer. Determines the current condition of a car based on feedback."</span><span class="p">)</span>
 <a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">analyzeForCondition</span><span class="p">(</span>
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carMake"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carMake</span><span class="p">,</span>
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carModel"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carModel</span><span class="p">,</span>
-<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carYear"</span><span class="p">)</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">carYear</span><span class="p">,</span>
-<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carNumber"</span><span class="p">)</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">carNumber</span><span class="p">,</span>
-<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carCondition"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carCondition</span><span class="p">,</span>
-<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"rentalFeedback"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">rentalFeedback</span><span class="p">,</span>
-<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">            </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carWashFeedback"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carWashFeedback</span><span class="p">);</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carMake"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carMake</span><span class="p">,</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carModel"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carModel</span><span class="p">,</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carYear"</span><span class="p">)</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">carYear</span><span class="p">,</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carNumber"</span><span class="p">)</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">carNumber</span><span class="p">,</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carCondition"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carCondition</span><span class="p">,</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"rentalFeedback"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">rentalFeedback</span><span class="p">,</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">        </span><span class="nd">@V</span><span class="p">(</span><span class="s">"carWashFeedback"</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">carWashFeedback</span><span class="p">);</span>
 <a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="p">}</span>
 </code></pre></div>
 <p>As we’ve seen before, the interface for an agent defines the system message, user message and indicates which method is the agent method. The car condition feedback agent will assess the car’s condition based on its previous known condition and the feedback provided.</p>
@@ -1278,23 +1278,26 @@ You are not viewing the latest version.
 </li>
 </ol>
 <h2 id="try-out-the-new-workflow">Try Out the New Workflow<a class="headerlink" href="#try-out-the-new-workflow" title="Permanent link"></a></h2>
-<p>Now that we have updated the workflow to update the car condition we can try it in the UI. </p>
-<p>In your browser, access <a href="http://localhost:8080" target="_blank">http://localhost:8080</a>.</p>
+<p>Now that we have updated the workflow to add the car condition we can try it in the UI. </p>
+<p>If you’re working from the <code>section-2/step-02</code> directory (or you had stopped the application), start the application with the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./mvnw<span class="w"> </span>quarkus:dev
+</code></pre></div>
+<p>Now that you’ve made sure the app is running, you can navigate to <a href="http://localhost:8080" target="_blank">http://localhost:8080</a> to access the updated UI.</p>
 <p>Notice that the <strong>Fleet Status</strong> section of the UI now has a “Condition” column, indicating the last known condition of the car.</p>
 <p>On the <strong>Rental Return</strong> tab choose a car and enter some feedback that would indicate something has changed about the condition of the car. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>there has clearly been a fire in the trunk of this car
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>there has clearly been a fire in the trunk of this car
 </code></pre></div>
 <p>After submitting the feedback (by hitting the <strong>Return</strong> button), and a brief pause, you should see the condition of the car gets updated in the <strong>Fleet Status</strong> section.</p>
 <p><img alt="Agentic UI" class="center" src="../../images/agentic-UI-2.png"></p>
 <p>Take a moment to look at the logs from your Quarkus runtime. You should be able to identify the following sequence of events:</p>
 <ol>
-<li>an HTTP request to the car wash agent</li>
-<li>an HTTP response from the car wash agent, requesting to run the requestCarWash function</li>
-<li>the CarWashTool output, requesting interior cleaning of the car (and possibly other options)</li>
-<li>an HTTP request to the car wash agent, including the response from the car wash tool</li>
-<li>an HTTP response from the car wash agent, stating that the car wash has been requested</li>
-<li>an HTTP request to the car condition feedback agent</li>
-<li>an HTTP response from the car condition feedback agent, providing a new car condition summary</li>
+<li>An HTTP request to the car wash agent.</li>
+<li>An HTTP response from the car wash agent, requesting to run the requestCarWash function.</li>
+<li>The CarWashTool output, requesting interior cleaning of the car (and possibly other options).</li>
+<li>An HTTP request to the car wash agent, including the response from the car wash tool.</li>
+<li>An HTTP response from the car wash agent, stating that the car wash has been requested.</li>
+<li>An HTTP request to the car condition feedback agent.</li>
+<li>An HTTP response from the car condition feedback agent, providing a new car condition summary.</li>
 </ol>
 <h2 id="when-to-use-parallel-workflows">When to Use Parallel Workflows<a class="headerlink" href="#when-to-use-parallel-workflows" title="Permanent link"></a></h2>
 <p>In this step, we could have run the car wash agent and the car condition feedback agent in parallel since the car condition feedback agent doesn’t depend on the output from the car wash agent. We chose to do them in sequence to simplify later steps in this lab, but you can try changing the sequence workflow to a parallel workflow (which should complete faster than the sequence workflow).</p></div>
