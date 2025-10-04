@@ -1141,7 +1141,7 @@ You are not viewing the latest version.
 <p><code>CarProcessingWorkflow</code> is a type-safe interface that we can use as our sequence workflow. Notice that the <code>CarProcessingWorkflow</code> interface looks a lot like a regular agent. Workflows can be thought of as containers for sets of agents, not agents themselves. Since workflows do not interact with LLMs, they do not have <code>@SystemMessage</code> or <code>@UserMessage</code> annotations. Notice that the <code>processCarReturn</code> method returns a result with type <code>ResultWithAgenticScope&lt;String&gt;</code> – which contains the text response from the agent as well as the <code>AgenticScope</code> that is created and used in the workflow.</p>
 <h2 id="define-the-agents-and-workflows">Define the agents and workflows<a class="headerlink" href="#define-the-agents-and-workflows" title="Permanent link"></a></h2>
 <p>We’ll need to make a few changes to our <code>CarManagementService</code> to define our new agent and workflow.</p>
-<p>Complete the steps described below, or simply copy the following code to the file in your <code>src/main/java/com/carmanagement/service</code> directory.</p>
+<p>Copy the following code to the file in your <code>src/main/java/com/carmanagement/service</code> directory. We’ll explain the multiple changes to the file.</p>
 <div class="highlight"><span class="filename">CarManagementService.java</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.carmanagement.service</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.carmanagement.agentic.agents.CarConditionFeedbackAgent</span><span class="p">;</span>
@@ -1260,21 +1260,21 @@ You are not viewing the latest version.
 <a id="__codelineno-3-116" name="__codelineno-3-116" href="#__codelineno-3-116"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="define-the-sequence-workflow-in-carmanagementservice">Define the Sequence Workflow in <code>CarManagementService</code><a class="headerlink" href="#define-the-sequence-workflow-in-carmanagementservice" title="Permanent link"></a></h3>
-<p>First, we’ll define the sequence workflow in <code>CarManagementService</code>.</p>
+<p>Here’s how the sequence workflow is defined in <code>CarManagementService</code>:</p>
 <ol>
-<li>Let’s modify the <code>initialize</code> method to initialize the <code>CarProcessingWorkflow</code> when the service is instantiated.</li>
-<li>The <code>createCarProcessingWorkflow</code> method needs to define the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> — the 2 agents we want to include in our sequence workflow.</li>
+<li>The <code>initialize</code> method initializes the <code>CarProcessingWorkflow</code> when the service is instantiated.</li>
+<li>The <code>createCarProcessingWorkflow</code> method defines the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> — the 2 agents included in our sequence workflow.</li>
 <li>
-<p>The <code>createCarProcessingWorkflow</code> method then needs to define the sequence workflow, <code>CarProcessingWorkflow</code>, including the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> as subagents (the subagent list represents the list of agents that are in the workflow).</p>
+<p>The <code>createCarProcessingWorkflow</code> method also defines the sequence workflow, <code>CarProcessingWorkflow</code>, with the <code>CarWashAgent</code> and <code>CarConditionFeedbackAgent</code> as subagents (the subagent list represents the list of agents that are in the workflow).</p>
 </li>
 <li>
-<p>In the <code>CarManagementService</code>, let’s modify the <code>processCarReturn</code> method to call the <code>carProcessingWorkflow</code> and process its results. We need to invoke <code>carProcessingWorkflow.processCarReturn</code>, the agent method, to cause each of the subagents to be executed in sequence. </p>
+<p>In the <code>CarManagementService</code>, the <code>processCarReturn</code> method calls the <code>carProcessingWorkflow</code> and processes its results. It invokes <code>carProcessingWorkflow.processCarReturn</code>, the agent method, which causes each of the subagents to execute in sequence.</p>
 </li>
 <li>
-<p>Retrieve the <code>carCondition</code> value from the <code>AgenticScope</code>, and use that value as the new condition for the car.</p>
+<p>The code retrieves the <code>carCondition</code> value from the <code>AgenticScope</code> and uses that value as the new condition for the car.</p>
 </li>
 <li>
-<p>As before, check the results from the car wash agent to decide whether to change the car state.</p>
+<p>As shown, the code checks the results from the car wash agent to decide whether to change the car state.</p>
 </li>
 </ol>
 <h2 id="try-out-the-new-workflow">Try Out the New Workflow<a class="headerlink" href="#try-out-the-new-workflow" title="Permanent link"></a></h2>
