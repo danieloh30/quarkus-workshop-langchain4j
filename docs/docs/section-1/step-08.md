@@ -22,7 +22,7 @@ As before, we recommend you follow the step-by-step guide to understand how it w
 
 Let's create a Quarkus MCP server from scratch (or, you can use the step-08-mcp-server project directly). We're going to add the Quarkus MCP server dependency, and the REST Client dependency so we can call a remote weather service to retrieve current weather conditions for a given location.
 
-In your terminal, make sure you're in the main directory of the workshop, and then execute the following command:
+In your terminal, make sure you're in the `section-1` directory of the workshop, and then execute the following command:
 
 ```shell
  quarkus create app dev.langchain4j.quarkus.workshop:quarkus-langchain4j-workshop-08-mcp-server:1.0-SNAPSHOT -x quarkus-mcp-server-sse -x quarkus-rest-client-jackson

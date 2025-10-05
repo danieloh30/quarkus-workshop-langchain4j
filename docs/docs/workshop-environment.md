@@ -149,7 +149,7 @@ Note that you should replace `<your-open-ai-api-key>` with your actual Open AI A
 export OPENAI_API_KEY=<your-open-ai-api-key>
 ```
 
-Make sure to run the Quarkus dev mode (`./mvnw quarkus:dev`) in this terminal later that you export the API key.
+Be sure to use this terminal later, when running Quarkus in dev mode (`./mvnw quarkus:dev`).
 
 ### Open the lab instructions
 

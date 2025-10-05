@@ -1,6 +1,6 @@
 # Step 01 - Introduction to Quarkus LangChain4j
 
-To get started, make sure you use the `step-01` directory.
+To get started, make sure you use the `section-1/step-01` directory.
 
 This step is the starting point for the workshop.
 It's a simple Quarkus application that uses the [Quarkus LangChain4j](https://docs.quarkiverse.io/quarkus-langchain4j/dev/index.html){target="_blank"} extension to interact with OpenAI's gpt-4o-mini model.
@@ -20,7 +20,7 @@ Run the application with the following command:
 ??? note "Could not expand value OPENAI_API_KEY"
     If you run into an error indicating `java.util.NoSuchElementException: SRCFG00011: Could not expand value OPENAI_API_KEY in property quarkus.langchain4j.openai.api-key`, make sure you have set the environment variable `OPENAI_API_KEY` with your OpenAI API key.
 
-This will bring up the page at [http://localhost:8080](http://localhost:8080){target="_blank"}. 
+The application UI is available at [http://localhost:8080](http://localhost:8080){target="_blank"}. 
 Open it and click the red robot icon in the bottom right corner to start chatting with the chatbot.
 
 ![Miles of Smiles UI](../images/ui-no-chatbot.png)
