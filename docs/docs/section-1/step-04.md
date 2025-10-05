@@ -59,7 +59,7 @@ Tell me a story
 ![Out of context](../images/out-of-context.png)
 
 The AI should respond with a message that it is out of context.
-You can relatively easily work around this by asking for a _car rental story_, but there are other solution to this
+You can relatively easily work around this by asking for a _car rental story_, but there are other solutions to this
 problem.
 
 What's important is to have a system message defining the scope of the conversation and the role of the AI.
