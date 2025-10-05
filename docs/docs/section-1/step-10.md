@@ -38,7 +38,7 @@ while the `log-responses` property enables logging of all responses received fro
 These logs provide valuable insights into how the LLM is interacting with your application and any issues that arise.
 Go ahead and start up Quarkus Dev Mode if you haven't already with `./mvnw quarkus:dev` go to [http://localhost:8080](http://localhost:8080/){target="_blank"}
 and open the chat interface in the bottom right of your screen. Send an instruction to the bot and then come
-back to your console. You'll see a series requests/responses to/from the LLM with a bunch of information such as
+back to your console. You'll see a series of requests/responses to/from the LLM with a bunch of information such as
 the url, headers, and in the body, the model you called, the messages, temperature, tokens and more.
 
 ```Bash title="Example Log Output"
@@ -163,7 +163,7 @@ the url, headers, and in the body, the model you called, the messages, temperatu
 }
 ```
 
-By default the logs are output the console. In a production system the console output is typically forwarded
+By default the logs are output to the console. In a production system the console output is typically forwarded
 to a log aggregation service so logs can be centralized and searched in more advanced ways.
 We'll take a look at a log collection system in a little bit, but first let's take a look at how to collect
 metrics from our application.
@@ -183,7 +183,7 @@ we have included the `quarkus-micrometer-registry-otlp` extension for the genera
 --8<-- "../../section-1/step-10/pom.xml:otlp"
 ```
 
-By default Quarkus will collect a variety of useful metrics for you by default,
+Quarkus will collect a variety of useful metrics for you by default,
 e.g., CPU & memory usage, garbage collection stats, etc. The LangChain4j extension will add useful metrics
 about the LLM interactions as well. Such as:
 
@@ -253,7 +253,7 @@ however Quarkus offers a few ways to visualize and search the collected data on 
 
 Quarkus provides an experimental new Dev Service to help visualize all your OpenTelemetry observability data in a central place.
 It is based on the open source LGTM stack, which stands for Loki (log aggregation), Grafana (graph tool), Tempo (traces aggregation)
-and Prometheus (metrics aggregation). By adding the `quarkus-observability-devservices-gtm` extension, this set of tools will
+and Prometheus (metrics aggregation). By adding the `quarkus-observability-devservices-lgtm` extension, this set of tools will
 automatically (or may we say 'automagically'?) start up in their respective containers and wire up to your application's observability endpoints.
 
 Add the following dependencies in your `pom.xml`:
