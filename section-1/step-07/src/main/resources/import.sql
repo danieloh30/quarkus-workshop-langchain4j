@@ -12,11 +12,11 @@ VALUES (5, 'Drifty', 'Skiddy');
 ALTER SEQUENCE customer_seq RESTART WITH 5;
 
 INSERT INTO booking (id, customer_id, dateFrom, dateTo, location)
-VALUES (1, 1, '2025-12-13', '2025-12-25', 'Verbier, Switzerland');
+VALUES (1, 1, '2025-12-13', '2025-12-16', 'Verbier, Switzerland');
 INSERT INTO booking (id, customer_id, dateFrom, dateTo, location)
 VALUES (2, 1, '2025-11-17', '2025-11-19', 'Sao Paulo, Brazil');
 INSERT INTO booking (id, customer_id, dateFrom, dateTo, location)
-VALUES (3, 1, '2025-10-20', '2025-10-26', 'Antwerp, Belgium');
+VALUES (3, 1, '2025-10-10', '2025-10-20', 'Antwerp, Belgium');
 
 INSERT INTO booking (id, customer_id, dateFrom, dateTo, location)
 VALUES (4, 2, '2025-10-20', '2025-10-25', 'Tokyo, Japan');

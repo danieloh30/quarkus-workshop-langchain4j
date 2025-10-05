@@ -147,13 +147,13 @@ Hello, I would like to cancel a booking.
 My name is Speedy McWheels. But, I don't remember the booking ID. Can you list all my future bookings?
 ```
 
-**AI**: Here are your upcoming bookings: 1. **Booking ID:** 3 **Location:** Antwerp, Belgium **From:** 2025-10-20 **To:** 2025-10-26 2. **Booking ID:** 2 **Location:** Sao Paulo, Brazil **From:** 2025-11-17 **To:** 2025-11-19 3. **Booking ID:** 1 **Location:** Verbier, Switzerland **From:** 2025-12-13 **To:** 2025-12-25 Please let me know which booking you'd like to cancel!
+**AI**: Here are your future bookings: 1. **Booking ID:** 1 - **Location:** Verbier, Switzerland - **Dates:** December 13, 2025 - December 16, 2025 2. **Booking ID:** 2 - **Location:** Sao Paulo, Brazil - **Dates:** November 17, 2025 - November 19, 2025 3. **Booking ID:** 3 - **Location:** Antwerp, Belgium - **Dates:** October 10, 2025 - October 20, 2025 Please let me know which booking you'd like to cancel and I'll assist you further!
 
 ```text title="You"
-I would like to cancel the last one.
+Cancel my Antwerp reservation.
 ```
 
-**AI**: Your booking to Verbier, Switzerland has been successfully canceled! If you need any further assistance, feel free to ask.
+**AI**: Your reservation for Antwerp, Belgium, has been successfully canceled. If you need any further assistance or wish to make another booking, feel free to ask!
 
 Alright, let's try now to cancel an invalid booking:
 
@@ -161,7 +161,7 @@ Alright, let's try now to cancel an invalid booking:
 Can you cancel my booking starting on 2025-12-13?
 ```
 
-**AI**:  According to our cancellation policy, you can cancel a reservation only up to 11 days prior to the start of the booking period. Since your booking starting on 2025-12-13 is more than 11 days away, you will not be able to cancel it at this time. If you have any other requests or questions, feel free to ask!
+**AI**: I'm sorry, but your booking starting on December 13, 2025, cannot be cancelled because its duration is only three days, which is less than the required four days as per our cancellation policy. If you have any other questions or need assistance with something else, please let me know!
 
 <!-- ![type:video](../images/chat-booking.mp4){: style='width: 80%'} -->
 
