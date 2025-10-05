@@ -928,7 +928,7 @@ developers can either make their data accessible via MCP servers or construct AI
 As before, we recommend you follow the step-by-step guide to understand how it works, and the different steps to implement this pattern.</p>
 <h2 id="create-a-new-mcp-weather-server-project">Create a new MCP Weather Server project<a class="headerlink" href="#create-a-new-mcp-weather-server-project" title="Permanent link"></a></h2>
 <p>Let’s create a Quarkus MCP server from scratch (or, you can use the step-08-mcp-server project directly). We’re going to add the Quarkus MCP server dependency, and the REST Client dependency so we can call a remote weather service to retrieve current weather conditions for a given location.</p>
-<p>In your terminal, make sure you’re in the main directory of the workshop, and then execute the following command:</p>
+<p>In your terminal, make sure you’re in the <code>section-1</code> directory of the workshop, and then execute the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w"> </span>quarkus<span class="w"> </span>create<span class="w"> </span>app<span class="w"> </span>dev.langchain4j.quarkus.workshop:quarkus-langchain4j-workshop-08-mcp-server:1.0-SNAPSHOT<span class="w"> </span>-x<span class="w"> </span>quarkus-mcp-server-sse<span class="w"> </span>-x<span class="w"> </span>quarkus-rest-client-jackson
 </code></pre></div>
 <p>You should now see a new <code>quarkus-langchain4j-workshop-08-mcp-server</code> folder. In it, create a new <code>src/main/java/dev/langchain4j/quarkus/workshop/WeatherClient.java</code> file. This will be our REST client to call the remote weather API. </p>
