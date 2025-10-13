@@ -15,7 +15,7 @@ import java.time.Duration;
 @ApplicationScoped
 public class Models {
 
-    @ConfigProperty(name = "ollama.model.name", defaultValue = "gpt-oss:20b")
+    @ConfigProperty(name = "ollama.model.name", defaultValue = "ibm/granite4:small-h")
     String ollamaModelName;
 
     @ConfigProperty(name = "model.temperature",  defaultValue = "0")
@@ -30,7 +30,7 @@ public class Models {
     }
 
     // Set the model provider here
-    private static final MODEL_PROVIDER modelProvider = MODEL_PROVIDER.OPENAI;
+    private static final MODEL_PROVIDER modelProvider = MODEL_PROVIDER.OLLAMA;
 
     /**
      * Provides the base chat language model for the application.
